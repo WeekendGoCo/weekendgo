@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ويكند جو | وجهتك القادمة تبدأ من هنا</title>
+  <meta name="description" content="منصة ويكند جو للسفر والسياحة - احجز فنادقك وباقات العطل بأفضل الأسعار. تجارب سفر فاخرة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── LIGHT MODE DEFAULT ─────────────────────────────── */
+    :root {
+      --bg:            #FFFFFF;
+      --bg-mid:        #F8FAFC;
+      --bg-card:       rgba(255,255,255,0.85);
+      --bg-input:      rgba(255,255,255,0.9);
+      --text:          #0B1325;
+      --text-sub:      #64748B;
+      --border:        rgba(0,0,0,0.07);
+      --shadow:        0 8px 32px rgba(0,0,0,0.07);
+      --shadow-lg:     0 20px 60px rgba(0,0,0,0.10);
+      --cyan:          #0095CC;
+      --cyan-glow:     rgba(0,149,204,0.15);
+      --green:         #7BB833;
+      --green-neon:    #A6CE39;
+      --navy:          #0B1F63;
+      --gold:          #C9A84C;
+      --glass:         rgba(255,255,255,0.75);
+      --glass-border:  rgba(0,0,0,0.06);
+      --hero-overlay:  linear-gradient(160deg, rgba(11,31,99,0.80) 0%, rgba(11,19,37,0.45) 60%, rgba(11,19,37,0.70) 100%);
+      --r-lg: 20px; --r-md: 12px; --r-sm: 8px;
+      --font: 'Cairo', sans-serif;
+    }
+
+    /* ── DARK MODE ──────────────────────────────────────── */
+    body.dark {
+      --bg:            #0B1325;
+      --bg-mid:        #0D1B2A;
+      --bg-card:       rgba(11,19,37,0.60);
+      --bg-input:      rgba(255,255,255,0.06);
+      --text:          #FFFFFF;
+      --text-sub:      #8D99AE;
+      --border:        rgba(255,255,255,0.10);
+      --shadow:        0 8px 32px rgba(0,0,0,0.30);
+      --shadow-lg:     0 20px 60px rgba(0,0,0,0.40);
+      --cyan:          #00E5FF;
+      --cyan-glow:     rgba(0,229,255,0.20);
+      --green:         #A6CE39;
+      --glass:         rgba(11,19,37,0.55);
+      --glass-border:  rgba(255,255,255,0.12);
+      --hero-overlay:  linear-gradient(160deg, rgba(11,31,99,0.85) 0%, rgba(11,19,37,0.40) 60%, rgba(11,19,37,0.80) 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); overflow-x: hidden; transition: background 0.35s, color 0.35s; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    input, select, button { font-family: var(--font); outline: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+    /* ── ANIMATIONS ─────────────────────────────────────── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(28px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes spin     { to { transform:rotate(360deg) } }
+    @keyframes shimmer  { 0%{background-position:-400% 0} 100%{background-position:400% 0} }
+    @keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.5} }
+    @keyframes slideIn  { from{transform:translateX(40px);opacity:0} to{transform:translateX(0);opacity:1} }
+    @keyframes heroZoom { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+    @keyframes drawLine { from{stroke-dashoffset:200} to{stroke-dashoffset:0} }
+    @keyframes fillIn   { from{fill-opacity:0} to{fill-opacity:1} }
+    @keyframes planeTrail { 0%{stroke-dashoffset:300;opacity:0} 15%{opacity:1} 85%{opacity:1} 100%{stroke-dashoffset:0;opacity:0} }
+
+    /* ── UTILITY ─────────────────────────────────────────── */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    .glass { background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); }
+    .btn-green {
+      background: linear-gradient(135deg, var(--green-neon), #7BB833);
+      color: #0B1325; border: none; padding: 13px 30px; border-radius: var(--r-md);
+      font-size: 15px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.3s; letter-spacing: 0.3px;
+    }
+    .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(166,206,57,0.4); filter: brightness(1.05); }
+    .btn-outline {
+      background: transparent; border: 1.5px solid var(--cyan); color: var(--cyan);
+      padding: 11px 26px; border-radius: var(--r-md); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { background: var(--cyan-glow); }
+    .section-title { font-size: clamp(26px,4vw,38px); font-weight: 900; text-align: center; margin-bottom: 10px; }
+    .section-title span { color: var(--cyan); }
+    .section-sub { text-align: center; color: var(--text-sub); font-size: 15px; margin-bottom: 52px; line-height: 1.7; }
+
+    /* ════════════════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════════════════ */
+    .navbar {
+      position: fixed; top:0; right:0; left:0; z-index:1000;
+      padding: 0 24px; transition: all 0.4s;
+    }
+    .navbar.scrolled {
+      background: var(--glass); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+    }
+    .nav-inner {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-logo img { height: 44px; width: auto; filter: drop-shadow(0 2px 8px rgba(11,31,99,0.2)); }
+    .nav-logo-text { line-height: 1; }
+    .nav-logo-main { font-size: 21px; font-weight: 900; color: var(--text); }
+    .nav-logo-main .go-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; background: var(--green-neon); border-radius: 50%;
+      color: #0B1F63; font-size: 12px; font-weight: 900; margin-right: 3px; vertical-align: middle;
+    }
+    .nav-logo-sub { font-size: 10px; color: var(--text-sub); letter-spacing: 0.8px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; justify-content: center; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-sub); padding: 7px 13px;
+      border-radius: var(--r-sm); transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 5px;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(0,0,0,0.04); }
+    body.dark .nav-links a:hover, body.dark .nav-links a.active { background: rgba(255,255,255,0.07); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .theme-btn {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--bg-mid);
+      border: 1px solid var(--border); color: var(--text-sub); font-size: 17px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+    }
+    .theme-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    .btn-login {
+      font-size: 13px; font-weight: 600; color: var(--text-sub);
+      padding: 8px 14px; background: none; border: none; cursor: pointer; transition: color 0.2s;
+    }
+    .btn-login:hover { color: var(--cyan); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all 0.3s; }
+    .mobile-menu {
+      display:none; flex-direction:column; background: var(--glass); backdrop-filter:blur(20px);
+      padding: 14px 24px 20px; border-bottom: 1px solid var(--glass-border);
+    }
+    .mobile-menu a { padding: 11px 0; border-bottom: 1px solid var(--border); font-size:15px; color:var(--text-sub); }
+    .mobile-menu a:hover { color: var(--cyan); }
+    .mobile-menu.open { display:flex; }
+
+    /* ════════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════════ */
+    .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+    
+    /* Background Slider */
+    .hero-slides { position: absolute; inset: 0; }
+    .hero-slide {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.5s ease; animation: heroZoom 12s ease-in-out infinite;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--hero-overlay);
+    }
+
+    /* Neon trail SVG */
+    .hero-trails {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.5;
+    }
+    .hero-trails path {
+      stroke-dasharray: 300; stroke-dashoffset: 300;
+      animation: planeTrail 8s ease-in-out infinite;
+    }
+    .hero-trails path:nth-child(2) { animation-delay: 3s; }
+
+    .hero-inner { position: relative; z-index: 2; padding-top: 80px; width: 100%; }
+    .hero-content {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center;
+      max-width: 1240px; margin: 0 auto; padding: 70px 24px 50px;
+    }
+    .hero-text { animation: fadeUp 0.9s ease forwards; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(166,206,57,0.15); border: 1px solid rgba(166,206,57,0.35);
+      border-radius: 100px; padding: 6px 16px; font-size: 13px; color: var(--green-neon);
+      font-weight: 600; margin-bottom: 22px; backdrop-filter: blur(8px);
+    }
+    .hero-title {
+      font-size: clamp(38px,5.5vw,64px); font-weight: 900; line-height: 1.12;
+      color: #FFFFFF; margin-bottom: 18px;
+    }
+    .hero-title .accent { color: var(--green-neon); }
+    .hero-title .accent-cyan { color: #00E5FF; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.8; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-trust { display: flex; align-items: center; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.7); }
+    .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-neon); animation: pulse 2s infinite; }
+
+    /* Hero Card (right side) */
+    .hero-card {
+      border-radius: 24px; padding: 28px; animation: fadeUp 1.1s ease 0.2s both;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.12);
+      background: rgba(11,19,37,0.60); backdrop-filter: blur(20px);
+    }
+    .hero-dest-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dest-code { font-size: 38px; font-weight: 900; color: #FFFFFF; line-height: 1; }
+    .dest-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+    .dest-arrow {
+      width: 42px; height: 42px; background: linear-gradient(135deg, #00E5FF, #0077aa);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; box-shadow: 0 0 20px rgba(0,229,255,0.4); animation: float 3s ease-in-out infinite;
+    }
+    .hero-card-info { background: rgba(255,255,255,0.07); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+    .card-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .card-row:last-child { margin-bottom: 0; }
+    .card-label { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+    .card-val { font-size: 13px; font-weight: 600; color: #FFFFFF; }
+    .card-price-row { display: flex; align-items: center; justify-content: space-between; }
+    .price-big { font-size: 30px; font-weight: 900; color: #00E5FF; line-height: 1; }
+    .price-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+    .float-badges { position: absolute; pointer-events: none; }
+    .hero-visual { position: relative; }
+    .badge-float {
+      position: absolute; border-radius: 12px; padding: 10px 14px; white-space: nowrap;
+      background: rgba(11,19,37,0.70); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12); font-size: 12px;
+    }
+    .badge-float-1 { top: -16px; left: -20px; animation: float 4s ease-in-out infinite; }
+    .badge-float-2 { bottom: -16px; right: -20px; animation: float 4s ease-in-out infinite 1.5s; }
+    .bf-icon { font-size: 20px; margin-bottom: 2px; }
+    .bf-val { font-weight: 800; font-size: 15px; color: #FFFFFF; }
+    .bf-sub { color: rgba(255,255,255,0.5); font-size: 10px; }
+
+    /* ── SEARCH BAR inside hero ─────────────────────── */
+    .hero-search {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; padding: 0 24px 60px;
+    }
+    .search-box {
+      background: var(--glass); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 24px;
+      padding: 24px 28px 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    }
+    body:not(.dark) .search-box {
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(11,31,99,0.10);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+    }
+    .stabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
+    .stabs::-webkit-scrollbar { display: none; }
+    .stab {
+      display: flex; align-items: center; gap: 7px; padding: 8px 16px;
+      border-radius: var(--r-sm); font-size: 13.5px; font-weight: 600; color: var(--text-sub);
+      cursor: pointer; border: 1px solid transparent; white-space: nowrap; background: none; transition: all 0.2s;
+    }
+    .stab:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+    body.dark .stab:hover { background: rgba(255,255,255,0.06); }
+    .stab.active { color: var(--cyan); background: var(--cyan-glow); border-color: rgba(0,149,204,0.25); }
+    body.dark .stab.active { color: #00E5FF; background: rgba(0,229,255,0.08); border-color: rgba(0,229,255,0.25); }
+    .stab-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+
+    /* ITSHOVER-STYLE ANIMATED TAB ICONS */
+    .icon-hotel, .icon-flight, .icon-package, .icon-resort, .icon-car {
+      width: 24px; height: 24px; flex-shrink: 0;
+    }
+    .icon-hotel path, .icon-flight path, .icon-package path, .icon-resort path, .icon-car path {
+      fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+      transition: all 0.3s;
+    }
+    /* Draw animation on hover */
+    .stab:hover .draw-line { stroke-dasharray: 60; stroke-dashoffset: 0; animation: drawLine 0.5s ease forwards; }
+    .stab.active .draw-line { stroke: var(--cyan); }
+    body.dark .stab.active .draw-line { stroke: #00E5FF; }
+    /* Window fill on active hotel icon */
+    .stab.active .icon-window { fill: var(--cyan); fill-opacity: 0.6; stroke: none; }
+    body.dark .stab.active .icon-window { fill: #00E5FF; }
+
+    /* Search form row */
+    .search-panel { display: none; }
+    .search-panel.active { display: block; }
+    .srow { display: grid; grid-template-columns: 2.2fr 1fr 1fr 90px 90px 76px; gap: 8px; align-items: end; }
+    .sf { display: flex; flex-direction: column; gap: 5px; position: relative; }
+    .sf label { font-size: 10.5px; color: var(--text-sub); letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600; }
+    .sf input, .sf select {
+      background: var(--bg-input); border: 1.5px solid var(--border); border-radius: var(--r-sm);
+      padding: 10px 13px; color: var(--text); font-size: 14px; font-family: var(--font);
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    }
+    .sf input:focus, .sf select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px var(--cyan-glow); }
+    .sf input::placeholder { color: var(--text-sub); opacity: 0.6; }
+    .sf select option { background: var(--bg-mid); color: var(--text); }
+    .search-btn {
+      background: linear-gradient(135deg, var(--green-neon), #6fa82a);
+      color: #0B1325; border: none; padding: 10px 14px; border-radius: var(--r-sm);
+      font-size: 14px; font-weight: 800; cursor: pointer; white-space: nowrap;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      min-height: 42px; transition: all 0.3s;
+    }
+    .search-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(166,206,57,0.4); }
+    .search-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .sources-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .src-label { font-size: 11px; color: var(--text-sub); }
+    .src-badge { font-size: 11px; padding: 3px 9px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-sub); background: var(--bg-mid); }
+
+    /* Autocomplete dropdown */
+    .ac-drop {
+      display: none; position: absolute; top: calc(100% + 4px); right: 0; left: 0;
+      background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r-md);
+      box-shadow: var(--shadow-lg); z-index: 9999; overflow: hidden; max-height: 280px; overflow-y: auto;
+    }
+    body.dark .ac-drop { background: #0D1B2A; border-color: rgba(0,229,255,0.2); }
+    .ac-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s;
+    }
+    .ac-item:last-child { border-bottom: none; }
+    .ac-item:hover { background: var(--cyan-glow); }
+    .ac-icon-wrap {
+      width: 34px; height: 34px; border-radius: 8px; background: var(--bg-mid);
+      display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0;
+    }
+    .ac-city .ac-icon-wrap { background: rgba(0,149,204,0.1); }
+    .ac-hotel .ac-icon-wrap { background: rgba(166,206,57,0.1); }
+    .ac-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .ac-sub { font-size: 11px; color: var(--text-sub); margin-top: 1px; }
+    .ac-type-badge { margin-right: auto; font-size: 10px; padding: 2px 7px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-sub); }
+    .ac-loading { padding: 14px 16px; font-size: 13px; color: var(--text-sub); display: flex; align-items: center; gap: 8px; }
+
+    /* Search results */
+    .results-area { margin-top: 20px; }
+    .results-header { font-size: 12px; color: var(--text-sub); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .results-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-neon); animation: pulse 1.2s infinite; }
+    .hotel-card {
+      display: grid; grid-template-columns: 130px 1fr auto; gap: 18px; align-items: center;
+      padding: 14px; border-radius: var(--r-md); margin-bottom: 10px; cursor: pointer;
+      border: 1.5px solid var(--border); background: var(--bg-mid); transition: all 0.25s;
+    }
+    .hotel-card:hover { border-color: var(--cyan); background: var(--bg); box-shadow: var(--shadow); transform: translateX(-2px); }
+    .h-img { width: 130px; height: 100px; border-radius: var(--r-sm); object-fit: cover; background: var(--border); flex-shrink: 0; }
+    .h-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .h-loc { font-size: 12px; color: var(--text-sub); margin-bottom: 8px; }
+    .h-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+    .h-badge { font-size: 10px; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-sub); }
+    .h-price-col { text-align: left; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .h-stars { color: var(--gold); font-size: 11px; }
+    .h-rating { font-size: 22px; font-weight: 800; color: var(--text); }
+    .h-rating-lbl { font-size: 10px; color: var(--text-sub); }
+    .h-price { font-size: 22px; font-weight: 900; color: var(--cyan); }
+    .h-price-lbl { font-size: 10px; color: var(--text-sub); }
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--text-sub); }
+    .empty-state .icon { font-size: 44px; margin-bottom: 12px; }
+
+    /* ════════════════════════════════════════════════════════
+       FEATURES with ITSHOVER-STYLE ANIMATED ICONS
+    ═══════════════════════════════════════════════════════════ */
+    .features-section { padding: 100px 24px; background: var(--bg-mid); }
+    .features-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+    .feat-card {
+      background: var(--bg-card); backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border); border-radius: 20px;
+      padding: 32px 24px; text-align: center; transition: all 0.35s; cursor: default;
+    }
+    .feat-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--cyan-glow); }
+
+    /* ITSHOVER ICON WRAPPER */
+    .feat-icon-wrap {
+      width: 72px; height: 72px; margin: 0 auto 22px; border-radius: 18px;
+      background: var(--bg-mid); border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.35s; position: relative; overflow: hidden;
+    }
+    .feat-card:hover .feat-icon-wrap {
+      background: var(--cyan-glow); border-color: var(--cyan);
+      box-shadow: 0 0 24px var(--cyan-glow);
+    }
+    /* SVG icons - Itshover stroke-animation style */
+    .feat-icon-wrap svg { width: 36px; height: 36px; transition: all 0.35s; }
+    .feat-icon-wrap svg path, .feat-icon-wrap svg rect, .feat-icon-wrap svg circle, .feat-icon-wrap svg polyline {
+      fill: none; stroke: var(--text-sub); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+      transition: stroke 0.35s, fill 0.35s, stroke-dashoffset 0.6s;
+    }
+    .feat-card:hover .feat-icon-wrap svg path,
+    .feat-card:hover .feat-icon-wrap svg rect,
+    .feat-card:hover .feat-icon-wrap svg circle,
+    .feat-card:hover .feat-icon-wrap svg polyline { stroke: var(--cyan); }
+    body.dark .feat-card:hover .feat-icon-wrap svg path,
+    body.dark .feat-card:hover .feat-icon-wrap svg rect,
+    body.dark .feat-card:hover .feat-icon-wrap svg circle { stroke: #00E5FF; }
+    /* Highlight filled elements */
+    .feat-icon-wrap svg .accent-fill { stroke: none; fill: var(--text-sub); transition: fill 0.35s; }
+    .feat-card:hover .accent-fill { fill: var(--cyan); }
+    /* Draw animation on hover */
+    .feat-icon-wrap svg .draw { stroke-dasharray: 100; stroke-dashoffset: 100; }
+    .feat-card:hover .feat-icon-wrap svg .draw { stroke-dashoffset: 0; animation: drawLine 0.6s ease forwards; }
+
+    .feat-title { font-size: 17px; font-weight: 800; margin-bottom: 10px; color: var(--text); }
+    .feat-desc { font-size: 13.5px; color: var(--text-sub); line-height: 1.75; }
+    .feat-sub { font-size: 12px; color: var(--green); font-weight: 700; margin-top: 12px; }
+
+    /* ════════════════════════════════════════════════════════
+       DESTINATIONS
+    ═══════════════════════════════════════════════════════════ */
+    .dest-section { padding: 100px 24px; }
+    .dest-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; max-width: 1100px; margin: 0 auto; }
+    .dest-card { border-radius: 20px; overflow: hidden; position: relative; cursor: pointer; height: 280px; transition: all 0.35s; }
+    .dest-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .dest-card.featured { grid-column: span 2; height: 300px; }
+    .dest-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .dest-card:hover .dest-bg { transform: scale(1.06); }
+    .dest-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(11,19,37,0.92) 100%); }
+    .dest-country {
+      position: absolute; top: 14px; right: 14px;
+      background: rgba(11,19,37,0.65); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15); padding: 4px 10px;
+      border-radius: 100px; font-size: 11px; color: #FFFFFF;
+    }
+    .dest-info { position: absolute; bottom: 0; right: 0; left: 0; padding: 20px; }
+    .dest-city { font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px; }
+    .dest-row { display: flex; align-items: center; justify-content: space-between; }
+    .dest-from { font-size: 11px; color: rgba(255,255,255,0.6); }
+    .dest-price { font-size: 18px; font-weight: 800; color: #00E5FF; }
+    /* Hover reveal button */
+    .dest-btn {
+      position: absolute; bottom: -50px; right: 16px; left: 16px;
+      background: linear-gradient(135deg, var(--green-neon), #7BB833); color: #0B1325;
+      border: none; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 800;
+      cursor: pointer; transition: bottom 0.35s ease; text-align: center;
+    }
+    .dest-card:hover .dest-btn { bottom: 16px; }
+
+    /* ════════════════════════════════════════════════════════
+       HOW IT WORKS
+    ═══════════════════════════════════════════════════════════ */
+    .hiw-section { padding: 100px 24px; background: var(--bg-mid); }
+    .hiw-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; max-width: 1000px; margin: 0 auto; position: relative; }
+    .hiw-grid::before {
+      content: ''; position: absolute; top: 38px; right: 12.5%; left: 12.5%;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+    .hiw-step { text-align: center; padding: 28px 18px; border-radius: 20px; transition: all 0.3s; position: relative; }
+    .hiw-step:hover { background: var(--bg-card); box-shadow: var(--shadow); transform: translateY(-4px); }
+    .step-num {
+      width: 72px; height: 72px; margin: 0 auto 18px; border-radius: 50%;
+      background: var(--bg-card); border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center; font-size: 26px;
+      position: relative; z-index: 1; transition: all 0.3s;
+    }
+    .hiw-step:hover .step-num { background: var(--cyan-glow); box-shadow: 0 0 20px var(--cyan-glow); }
+    .step-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+
+    /* ════════════════════════════════════════════════════════
+       STATS
+    ═══════════════════════════════════════════════════════════ */
+    .stats-section { padding: 80px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .stat-card { text-align: center; padding: 32px 20px; border-radius: 20px; transition: all 0.3s; }
+    .stat-card:hover { background: var(--bg-card); box-shadow: var(--shadow); }
+    .stat-num {
+      font-size: 44px; font-weight: 900; line-height: 1; margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--cyan), var(--green-neon));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-lbl { font-size: 14px; color: var(--text-sub); font-weight: 500; }
+
+    /* ════════════════════════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════════════════════════ */
+    .reviews-section { padding: 100px 24px; background: var(--bg-mid); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+    .review-card {
+      background: var(--bg-card); backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border); border-radius: 20px;
+      padding: 28px; transition: all 0.3s;
+    }
+    .review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--cyan-glow); }
+    .review-stars { color: var(--gold); font-size: 15px; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text { font-size: 14px; color: var(--text-sub); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--green-neon)); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #0B1325; flex-shrink: 0; }
+    .review-name { font-size: 14px; font-weight: 700; }
+    .review-loc { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+    .review-badge { font-size: 10px; color: var(--cyan); margin-top: 3px; }
+
+    /* ════════════════════════════════════════════════════════
+       HOTEL CHAINS PARTNERS (replaces old partners section)
+    ═══════════════════════════════════════════════════════════ */
+    .chains-section { padding: 80px 24px; border-top: 1px solid var(--border); }
+    .chains-label { text-align: center; font-size: 12px; color: var(--text-sub); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 40px; }
+    .chains-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+    .chain-card {
+      border-radius: 16px; padding: 24px 20px; text-align: center;
+      border: 1.5px solid var(--border); background: var(--bg-card);
+      backdrop-filter: blur(12px); transition: all 0.3s; cursor: default;
+    }
+    .chain-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .chain-logo {
+      height: 52px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px; font-weight: 900; letter-spacing: -0.5px;
+    }
+    .chain-name { font-size: 12px; color: var(--text-sub); font-weight: 500; }
+    .chain-tag { font-size: 10px; margin-top: 4px; font-weight: 600; padding: 2px 8px; border-radius: 100px; display: inline-block; }
+
+    /* Individual chain brand colors */
+    .chain-marriott .chain-logo { font-size: 32px; color: #C41230; font-family: serif; letter-spacing: -1px; }
+    .chain-marriott:hover { border-color: rgba(196,18,48,0.3); }
+    .chain-marriott .chain-tag { background: rgba(196,18,48,0.08); color: #C41230; }
+
+    .chain-hilton .chain-logo { font-size: 28px; color: #003087; letter-spacing: 1px; }
+    .chain-hilton:hover { border-color: rgba(0,48,135,0.3); }
+    .chain-hilton .chain-tag { background: rgba(0,48,135,0.08); color: #003087; }
+    body.dark .chain-hilton .chain-logo { color: #5591e0; }
+    body.dark .chain-hilton .chain-tag { color: #5591e0; background: rgba(85,145,224,0.1); }
+
+    .chain-hyatt .chain-logo { font-size: 26px; color: #B40D25; }
+    .chain-hyatt:hover { border-color: rgba(180,13,37,0.3); }
+    .chain-hyatt .chain-tag { background: rgba(180,13,37,0.08); color: #B40D25; }
+
+    .chain-ihg .chain-logo { font-size: 20px; color: #003580; letter-spacing: 1px; }
+    .chain-ihg:hover { border-color: rgba(0,53,128,0.3); }
+    .chain-ihg .chain-tag { background: rgba(0,53,128,0.08); color: #003580; }
+    body.dark .chain-ihg .chain-logo { color: #6a9fd8; }
+    body.dark .chain-ihg .chain-tag { color: #6a9fd8; background: rgba(106,159,216,0.1); }
+
+    .chain-accor .chain-logo { font-size: 26px; color: #C8102E; font-style: italic; }
+    .chain-accor:hover { border-color: rgba(200,16,46,0.3); }
+    .chain-accor .chain-tag { background: rgba(200,16,46,0.08); color: #C8102E; }
+
+    .chain-fourseasons .chain-logo { font-size: 16px; color: #B8963E; letter-spacing: 2px; text-transform: uppercase; }
+    .chain-fourseasons:hover { border-color: rgba(184,150,62,0.3); }
+    .chain-fourseasons .chain-tag { background: rgba(184,150,62,0.08); color: #B8963E; }
+
+    .chain-rotana .chain-logo { font-size: 26px; color: #8B6914; letter-spacing: 1px; }
+    .chain-rotana:hover { border-color: rgba(139,105,20,0.3); }
+    .chain-rotana .chain-tag { background: rgba(139,105,20,0.08); color: #8B6914; }
+
+    .chain-jumeirah .chain-logo { font-size: 18px; color: #1B4B82; letter-spacing: 2px; text-transform: uppercase; }
+    .chain-jumeirah:hover { border-color: rgba(27,75,130,0.3); }
+    .chain-jumeirah .chain-tag { background: rgba(27,75,130,0.08); color: #1B4B82; }
+    body.dark .chain-jumeirah .chain-logo { color: #6aafef; }
+    body.dark .chain-jumeirah .chain-tag { color: #6aafef; background: rgba(106,175,239,0.1); }
+
+    /* ════════════════════════════════════════════════════════
+       APP BANNER
+    ═══════════════════════════════════════════════════════════ */
+    .app-section { padding: 80px 24px; }
+    .app-banner {
+      max-width: 1100px; margin: 0 auto; border-radius: 28px; padding: 52px 60px;
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px;
+      background: linear-gradient(135deg, rgba(11,31,99,0.85) 0%, rgba(0,149,204,0.15) 100%);
+      border: 1px solid rgba(0,149,204,0.2); position: relative; overflow: hidden;
+    }
+    body:not(.dark) .app-banner {
+      background: linear-gradient(135deg, #0B1F63 0%, #1a3c8f 100%);
+      color: #FFFFFF;
+    }
+    .app-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(166,206,57,0.08) 0%, transparent 60%);
+    }
+    .app-text { position: relative; }
+    .app-title { font-size: 32px; font-weight: 900; margin-bottom: 12px; color: #FFFFFF; }
+    .app-title span { color: var(--green-neon); }
+    .app-desc { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 28px; max-width: 480px; }
+    .app-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .app-btn {
+      display: flex; align-items: center; gap: 10px; padding: 12px 20px;
+      border-radius: var(--r-md); font-size: 14px; font-weight: 600; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color: #FFFFFF; transition: all 0.3s;
+    }
+    .app-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--green-neon); transform: translateY(-2px); }
+    .app-phones { display: flex; align-items: center; position: relative; z-index: 1; }
+    .phone-mock {
+      width: 120px; height: 220px; border-radius: 22px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+      font-size: 44px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation: float 4s ease-in-out infinite;
+    }
+    .phone-mock:last-child { margin-top: 28px; margin-right: -20px; animation-delay: 1.2s; }
+
+    /* ════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    .footer { background: var(--bg-mid); border-top: 1px solid var(--border); padding: 60px 24px 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
+    .footer-brand { }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo img { height: 38px; }
+    .footer-logo-text .main { font-size: 19px; font-weight: 900; color: var(--text); }
+    .footer-logo-text .go { color: var(--green-neon); }
+    .footer-logo-text .sub { font-size: 10px; color: var(--text-sub); }
+    .footer-desc { font-size: 13.5px; color: var(--text-sub); line-height: 1.8; margin-bottom: 20px; }
+    .social-links { display: flex; gap: 8px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--bg-card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .social-btn:hover { border-color: var(--cyan); background: var(--cyan-glow); color: var(--cyan); transform: translateY(-2px); }
+    .footer-col h4 { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-sub); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cyan); }
+    .contact-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-sub); margin-bottom: 10px; }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 12px; color: var(--text-sub); }
+    .footer-legal { display: flex; gap: 18px; }
+    .footer-legal a { font-size: 12px; color: var(--text-sub); transition: color 0.2s; }
+    .footer-legal a:hover { color: var(--cyan); }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed; bottom: 24px; left: 24px; width: 42px; height: 42px;
+      border-radius: 50%; background: var(--navy); border: none; color: #FFFFFF;
+      font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: all 0.3s; box-shadow: var(--shadow);
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { background: var(--cyan); transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media(max-width:1100px) {
+      .features-grid { grid-template-columns: repeat(2,1fr); }
+      .dest-grid { grid-template-columns: repeat(2,1fr); }
+      .dest-card.featured { grid-column: span 1; }
+      .chains-grid { grid-template-columns: repeat(4,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .srow { grid-template-columns: 1fr 1fr; }
+      .srow .search-btn { grid-column: span 2; }
+      .hiw-grid { grid-template-columns: repeat(2,1fr); }
+      .hiw-grid::before { display: none; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .app-banner { grid-template-columns: 1fr; }
+      .app-phones { display: none; }
+      .chains-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .dest-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hiw-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .chains-grid { grid-template-columns: 1fr 1fr; }
+      .app-banner { padding: 32px 24px; }
+      .srow { grid-template-columns: 1fr; }
+      .srow .search-btn { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="/logo/logo.png" alt="ويكند جو" id="navLogo" />
+        <div class="nav-logo-text">
+          <div class="nav-logo-main">ويكند <span class="go-badge">جو</span></div>
+          <div class="nav-logo-sub">◆ للسفر والسياحة ◆</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#" class="active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 1 4 0"/></svg>
+          فنادق
+        </a>
+        <a href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.53 2 2 0 0 1 3.6 1.36h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          رحلات طيران
+        </a>
+        <a href="#">🏖️ منتجعات</a>
+        <a href="#">🚗 سيارات</a>
+        <a href="#">🌍 وجهات</a>
+      </div>
+      <div class="nav-cta">
+        <button class="theme-btn" id="themeBtn" title="تبديل الوضع">☀️</button>
+        <button class="btn-login" id="btnLogin" onclick="window.location.href='/auth/google'">تسجيل الدخول</button>
+        <button class="btn-green" style="padding:10px 20px;font-size:13px">احجز الآن ✈</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">🏨 فنادق</a>
+      <a href="#">✈ رحلات طيران</a>
+      <a href="#">🏖️ منتجعات</a>
+      <a href="#">🚗 سيارات</a>
+      <a href="#">🌍 وجهات</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — Full-screen with image slider
+  ════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- Background slides -->
+    <div class="hero-slides">
+      <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1920&q=80')"></div>
+    </div>
+    <!-- Neon trails -->
+    <svg class="hero-trails" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="t1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#A6CE39" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#00E5FF" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#A6CE39" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="M1440 220 C1200 260 900 160 600 310 C300 460 100 410 -100 510" stroke="url(#t1)" stroke-width="1.5" fill="none" stroke-dasharray="300"/>
+      <path d="M1440 380 C1100 320 800 470 500 370 C200 270 0 420 -200 370" stroke="url(#t1)" stroke-width="1" fill="none" stroke-dasharray="300"/>
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <!-- Left: text -->
+        <div class="hero-text">
+          <div class="hero-badge">✈ وجهاتنا تغطي أكثر من 150 دولة</div>
+          <h1 class="hero-title">
+            وجهتك القادمة<br/>
+            <span class="accent">تبدأ من هنا</span>
+          </h1>
+          <p class="hero-sub">سافر. اكتشف. اعش التجربة.<br/>أفضل الفنادق بأفضل الأسعار مع ضمان الجودة.</p>
+          <div class="hero-actions">
+            <button class="btn-green" onclick="document.getElementById('h-dest').focus()">🔍 ابحث عن رحلتك</button>
+            <button class="btn-outline" onclick="document.querySelector('.dest-section').scrollIntoView({behavior:'smooth'})">اكتشف الوجهات</button>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><div class="trust-dot"></div>حجز آمن 100%</div>
+            <div class="trust-item"><div class="trust-dot"></div>ضمان أفضل سعر</div>
+            <div class="trust-item"><div class="trust-dot"></div>دعم 24/7 بالعربية</div>
+          </div>
+        </div>
+        <!-- Right: card -->
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-dest-row">
+              <div>
+                <div class="dest-code" style="color:#00E5FF">JED</div>
+                <div class="dest-sub">جدة · الملك عبدالعزيز</div>
+              </div>
+              <div class="dest-arrow">✈</div>
+              <div style="text-align:left">
+                <div class="dest-code">DXB</div>
+                <div class="dest-sub">دبي · الدولي</div>
+              </div>
+            </div>
+            <div class="hero-card-info">
+              <div class="card-row">
+                <div><div class="card-label">الذهاب</div><div class="card-val" id="hCardGo">25 يونيو 2026</div></div>
+                <div><div class="card-label">العودة</div><div class="card-val" id="hCardBack">30 يونيو 2026</div></div>
+              </div>
+              <div class="card-row">
+                <div><div class="card-label">المسافرون</div><div class="card-val">2 بالغ · رجال أعمال</div></div>
+                <div><div class="card-label">الفئة</div><div class="card-val" style="color:#A6CE39">⭐ فاخرة</div></div>
+              </div>
+            </div>
+            <div class="card-price-row">
+              <div>
+                <div class="price-big">$299</div>
+                <div class="price-label">للشخص / ذهاب وإياب</div>
+              </div>
+              <button class="btn-green" style="padding:10px 18px;font-size:13px">احجز الآن</button>
+            </div>
+          </div>
+          <div class="badge-float badge-float-1" style="color:#FFFFFF">
+            <div class="bf-icon">🏨</div>
+            <div class="bf-val">+50,000</div>
+            <div class="bf-sub">فندق حول العالم</div>
+          </div>
+          <div class="badge-float badge-float-2" style="color:#FFFFFF">
+            <div class="bf-icon">⭐</div>
+            <div class="bf-val">4.9 / 5</div>
+            <div class="bf-sub">تقييم العملاء</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ──── INTEGRATED SEARCH BOX ──── -->
+      <div class="hero-search">
+        <div class="search-box">
+          <!-- Tabs -->
+          <div class="stabs" role="tablist">
+            <button class="stab active" onclick="switchTab('hotel')" role="tab">
+              <!-- Itshover hotel icon -->
+              <svg class="icon-hotel" viewBox="0 0 24 24"><rect class="draw" x="2" y="9" width="20" height="13" rx="2"/><rect class="icon-window" x="6" y="13" width="3" height="3" rx="0.5"/><rect class="icon-window" x="10.5" y="13" width="3" height="3" rx="0.5"/><rect class="icon-window" x="15" y="13" width="3" height="3" rx="0.5"/><path class="draw" d="M2 9L12 3l10 6"/><rect x="9" y="18" width="6" height="4"/></svg>
+              فنادق
+            </button>
+            <button class="stab" onclick="switchTab('flight')" role="tab">
+              <!-- Itshover flight icon -->
+              <svg class="icon-flight" viewBox="0 0 24 24"><path class="draw" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.53 2 2 0 0 1 3.6 1.36h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8a16 16 0 0 0 6 6"/><path class="draw" d="M22 2L11 13"/><path d="M22 2l-5 5-4.5-4.5L17 2z"/></svg>
+              طيران
+            </button>
+            <button class="stab" onclick="switchTab('package')" role="tab">
+              <!-- Package icon -->
+              <svg class="icon-package" viewBox="0 0 24 24"><path class="draw" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline class="draw" points="9 22 9 12 15 12 15 22"/></svg>
+              باقات
+            </button>
+            <button class="stab" onclick="switchTab('resort')" role="tab">
+              <svg class="icon-resort" viewBox="0 0 24 24"><path class="draw" d="M12 2C12 2 6 8 6 13a6 6 0 0 0 12 0C18 8 12 2 12 2z"/><path class="draw" d="M12 22V13"/></svg>
+              منتجعات
+            </button>
+            <button class="stab" onclick="switchTab('car')" role="tab">
+              <svg class="icon-car" viewBox="0 0 24 24"><path class="draw" d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle class="draw" cx="7" cy="17" r="2"/><circle class="draw" cx="17" cy="17" r="2"/></svg>
+              سيارات
+            </button>
+          </div>
+
+          <!-- Hotel Panel -->
+          <div class="search-panel active" id="panel-hotel">
+            <div class="srow">
+              <div class="sf">
+                <label>الوجهة أو اسم الفندق</label>
+                <input id="h-dest" type="text" placeholder="دبي، لندن، اسم فندق..." autocomplete="off" />
+                <div class="ac-drop" id="ac-drop"></div>
+              </div>
+              <div class="sf">
+                <label>تسجيل الوصول</label>
+                <input id="h-ci" type="date" />
+              </div>
+              <div class="sf">
+                <label>المغادرة</label>
+                <input id="h-co" type="date" />
+              </div>
+              <div class="sf">
+                <label>البالغون</label>
+                <select id="h-adults">
+                  <option value="1">1 بالغ</option>
+                  <option value="2" selected>2 بالغ</option>
+                  <option value="3">3 بالغين</option>
+                  <option value="4">4 بالغين</option>
+                  <option value="5">5+</option>
+                </select>
+              </div>
+              <div class="sf">
+                <label>الغرف</label>
+                <select id="h-rooms">
+                  <option value="1" selected>1 غرفة</option>
+                  <option value="2">2 غرف</option>
+                  <option value="3">3 غرف</option>
+                </select>
+              </div>
+              <div class="sf">
+                <label style="visibility:hidden">ب</label>
+                <button class="search-btn" id="searchBtn" onclick="searchHotels()">🔍 بحث</button>
+              </div>
+            </div>
+            <div class="sources-row">
+              <span class="src-label">يبحث في:</span>
+              <span class="src-badge">🌐 WebBeds</span>
+              <span class="src-badge">📋 Booking</span>
+              <span class="src-badge">🏨 TBO</span>
+              <span class="src-badge">⭐ عقودنا الحصرية</span>
+            </div>
+            <div class="results-area" id="hotelResults">
+              <div class="empty-state"><div class="icon">🏨</div>أدخل وجهتك وانقر بحث</div>
+            </div>
+          </div>
+
+          <!-- Flight Panel -->
+          <div class="search-panel" id="panel-flight">
+            <div class="srow">
+              <div class="sf"><label>من</label><input type="text" placeholder="مدينة المغادرة" value="JED - جدة"/></div>
+              <div class="sf"><label>إلى</label><input type="text" placeholder="مدينة الوصول" value="DXB - دبي"/></div>
+              <div class="sf"><label>الذهاب</label><input id="f-dep" type="date"/></div>
+              <div class="sf"><label>العودة</label><input id="f-ret" type="date"/></div>
+              <div class="sf"><label>المسافرون</label><select><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></div>
+              <div class="sf"><label style="visibility:hidden">ب</label><button class="search-btn">🔍 بحث</button></div>
+            </div>
+            <div class="sources-row"><span class="src-label">يبحث في:</span><span class="src-badge">✈ 44 شركة طيران</span><span class="src-badge">🌐 GDS</span></div>
+            <div class="empty-state" style="margin-top:16px"><div class="icon">✈</div>أدخل بيانات الرحلة للبحث</div>
+          </div>
+
+          <!-- Package Panel -->
+          <div class="search-panel" id="panel-package">
+            <div class="srow">
+              <div class="sf"><label>الوجهة</label><input type="text" placeholder="دبي، إسطنبول، مالديف..."/></div>
+              <div class="sf"><label>من مدينة</label><input type="text" placeholder="جدة، الرياض..."/></div>
+              <div class="sf"><label>التاريخ</label><input type="date"/></div>
+              <div class="sf"><label>الليالي</label><select><option>3</option><option selected>5</option><option>7</option><option>10</option></select></div>
+              <div class="sf"><label>الأشخاص</label><select><option>1</option><option selected>2</option><option>4</option></select></div>
+              <div class="sf"><label style="visibility:hidden">ب</label><button class="search-btn">🔍 بحث</button></div>
+            </div>
+            <div class="empty-state" style="margin-top:16px"><div class="icon">📦</div>باقات شاملة: طيران + فندق + جولات</div>
+          </div>
+
+          <!-- Resort Panel -->
+          <div class="search-panel" id="panel-resort">
+            <div class="srow">
+              <div class="sf"><label>الوجهة</label><input type="text" placeholder="المالديف، بالي، سيشيل..."/></div>
+              <div class="sf"><label>الوصول</label><input type="date"/></div>
+              <div class="sf"><label>المغادرة</label><input type="date"/></div>
+              <div class="sf"><label>الأشخاص</label><select><option value="2" selected>2</option><option>4</option></select></div>
+              <div class="sf"><label>النوع</label><select><option>شاطئي</option><option>جبلي</option><option>كل شيء شامل</option></select></div>
+              <div class="sf"><label style="visibility:hidden">ب</label><button class="search-btn">🔍 بحث</button></div>
+            </div>
+            <div class="empty-state" style="margin-top:16px"><div class="icon">🏖️</div>أفخم المنتجعات حول العالم</div>
+          </div>
+
+          <!-- Car Panel -->
+          <div class="search-panel" id="panel-car">
+            <div class="srow">
+              <div class="sf"><label>مكان الاستلام</label><input type="text" placeholder="مطار أو مدينة..."/></div>
+              <div class="sf"><label>الاستلام</label><input type="date"/></div>
+              <div class="sf"><label>الإعادة</label><input type="date"/></div>
+              <div class="sf"><label>نوع السيارة</label><select><option>اقتصادية</option><option>متوسطة</option><option>فاخرة</option><option>دفع رباعي</option></select></div>
+              <div class="sf"><label>عمر السائق</label><select><option>25+</option><option>21-24</option></select></div>
+              <div class="sf"><label style="visibility:hidden">ب</label><button class="search-btn">🔍 بحث</button></div>
+            </div>
+            <div class="empty-state" style="margin-top:16px"><div class="icon">🚗</div>استئجار سيارات في أي مكان بالعالم</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURES with ITSHOVER-STYLE ANIMATED ICONS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title">لماذا تختار <span>ويكند جو</span>؟</h2>
+      <p class="section-sub">نقدم لك تجربة سفر استثنائية بمعايير عالمية</p>
+      <div class="features-grid">
+
+        <!-- Luxury icon (crown) -->
+        <div class="feat-card">
+          <div class="feat-icon-wrap">
+            <svg viewBox="0 0 24 24"><polyline class="draw" points="2 20 7 4 12 10 17 4 22 20"/><line class="draw" x1="2" y1="20" x2="22" y2="20"/><circle cx="12" cy="10" r="1.5" class="accent-fill"/></svg>
+          </div>
+          <div class="feat-title">تجارب فاخرة</div>
+          <div class="feat-desc">وصول حصري لأرقى الفنادق والمنتجعات العالمية مع ترتيبات VIP مخصصة</div>
+          <div class="feat-sub">+50,000 فندق فاخر</div>
+        </div>
+
+        <!-- Best price icon (diamond) -->
+        <div class="feat-card">
+          <div class="feat-icon-wrap">
+            <svg viewBox="0 0 24 24"><path class="draw" d="M6 3h12l4 6-10 13L2 9z"/><path class="draw" d="M2 9h20"/><path class="draw" d="M12 3L8 9l4 13 4-13-4-6z"/></svg>
+          </div>
+          <div class="feat-title">أفضل الأسعار مضمونة</div>
+          <div class="feat-desc">نقارن من أكثر من 10 مزودين عالميين لنضمن لك أفضل صفقة ممكنة</div>
+          <div class="feat-sub">ضمان استرداد الفرق</div>
+        </div>
+
+        <!-- Support icon (headphones) -->
+        <div class="feat-card">
+          <div class="feat-icon-wrap">
+            <svg viewBox="0 0 24 24"><path class="draw" d="M3 18v-6a9 9 0 0 1 18 0v6"/><path class="draw" d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </div>
+          <div class="feat-title">دعم 24/7 بالعربية</div>
+          <div class="feat-desc">فريق متخصص يتحدث العربية متاح على مدار الساعة لمساعدتك</div>
+          <div class="feat-sub">متوسط الرد: دقيقتان</div>
+        </div>
+
+        <!-- Security icon (shield + check) -->
+        <div class="feat-card">
+          <div class="feat-icon-wrap">
+            <svg viewBox="0 0 24 24"><path class="draw" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline class="draw" points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="feat-title">حجز آمن 100%</div>
+          <div class="feat-desc">معاملات مشفرة بأحدث تقنيات الحماية مع سياسة إلغاء مرنة</div>
+          <div class="feat-sub">SSL + 3D Secure</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESTINATIONS with real Unsplash images
+  ════════════════════════════════════════════════════════════ -->
+  <section class="dest-section">
+    <div class="container">
+      <h2 class="section-title">الوجهات <span>الأكثر شعبية</span></h2>
+      <p class="section-sub">اكتشف أجمل المدن وأكثرها جذباً لعشاق السفر</p>
+      <div class="dest-grid">
+        <div class="dest-card featured" onclick="selectDest('دبي')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80" alt="دبي" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇦🇪 الإمارات</div>
+          <div class="dest-info">
+            <div class="dest-city">دبي</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$199</div></div>
+          </div>
+          <button class="dest-btn">ابحث عن فنادق دبي ←</button>
+        </div>
+        <div class="dest-card" onclick="selectDest('إسطنبول')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80" alt="إسطنبول" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇹🇷 تركيا</div>
+          <div class="dest-info">
+            <div class="dest-city">إسطنبول</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$249</div></div>
+          </div>
+          <button class="dest-btn">ابحث ←</button>
+        </div>
+        <div class="dest-card" onclick="selectDest('مالديف')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=600&q=80" alt="المالديف" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇲🇻 المالديف</div>
+          <div class="dest-info">
+            <div class="dest-city">المالديف</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$899</div></div>
+          </div>
+          <button class="dest-btn">ابحث ←</button>
+        </div>
+        <div class="dest-card" onclick="selectDest('باريس')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="باريس" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇫🇷 فرنسا</div>
+          <div class="dest-info">
+            <div class="dest-city">باريس</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$349</div></div>
+          </div>
+          <button class="dest-btn">ابحث ←</button>
+        </div>
+        <div class="dest-card" onclick="selectDest('لندن')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80" alt="لندن" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇬🇧 بريطانيا</div>
+          <div class="dest-info">
+            <div class="dest-city">لندن</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$399</div></div>
+          </div>
+          <button class="dest-btn">ابحث ←</button>
+        </div>
+        <div class="dest-card" onclick="selectDest('بانكوك')">
+          <img class="dest-bg" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80" alt="بانكوك" loading="lazy" />
+          <div class="dest-overlay"></div>
+          <div class="dest-country">🇹🇭 تايلاند</div>
+          <div class="dest-info">
+            <div class="dest-city">بانكوك</div>
+            <div class="dest-row"><div class="dest-from">يبدأ من</div><div class="dest-price">$299</div></div>
+          </div>
+          <button class="dest-btn">ابحث ←</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HOW IT WORKS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="hiw-section">
+    <div class="container">
+      <h2 class="section-title">كيف <span>يعمل</span>؟</h2>
+      <p class="section-sub">4 خطوات بسيطة تفصلك عن رحلة أحلامك</p>
+      <div class="hiw-grid">
+        <div class="hiw-step">
+          <div class="step-num">🔍</div>
+          <div class="step-title">ابحث</div>
+          <div class="step-desc">أدخل وجهتك والتواريخ وعدد المسافرين وسنجد لك أفضل الخيارات</div>
+        </div>
+        <div class="hiw-step">
+          <div class="step-num">⚡</div>
+          <div class="step-title">قارن</div>
+          <div class="step-desc">نقارن الأسعار من 10+ مزودين عالميين لنضمن لك أفضل سعر</div>
+        </div>
+        <div class="hiw-step">
+          <div class="step-num">💳</div>
+          <div class="step-title">احجز</div>
+          <div class="step-desc">احجز بأمان عبر بوابة دفع مشفرة وتأكد حجزك فوراً</div>
+        </div>
+        <div class="hiw-step">
+          <div class="step-num">✈</div>
+          <div class="step-title">سافر</div>
+          <div class="step-desc">استلم وثائق سفرك واستمتع برحلتك مع دعمنا المستمر 24/7</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       STATS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">50K+</div><div class="stat-lbl">فندق ومنتجع حول العالم</div></div>
+        <div class="stat-card"><div class="stat-num">2M+</div><div class="stat-lbl">حجز ناجح أتممناه</div></div>
+        <div class="stat-card"><div class="stat-num">500K+</div><div class="stat-lbl">عميل سعيد</div></div>
+        <div class="stat-card"><div class="stat-num">150+</div><div class="stat-lbl">دولة نخدمها</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       REVIEWS
+  ════════════════════════════════════════════════════════════ -->
+  <section class="reviews-section">
+    <div class="container">
+      <h2 class="section-title">ماذا يقول <span>عملاؤنا</span></h2>
+      <p class="section-sub">آراء حقيقية من مسافرين حقيقيين وثّقوا تجربتهم معنا</p>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"تجربة رائعة من البداية للنهاية. حجزت فندق في دبي بسعر لم أجده في أي موقع آخر، والدعم الفني كان متاحاً في أي وقت."</div>
+          <div class="review-author">
+            <div class="review-av">م</div>
+            <div>
+              <div class="review-name">محمد العمري</div>
+              <div class="review-loc">🇸🇦 الرياض، المملكة العربية السعودية</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"حجزت باقة إسطنبول كاملة بـ30% أقل من المواقع الأخرى. التنظيم كان ممتازاً من الطيران للفندق للجولات. شكراً ويكند جو!"</div>
+          <div class="review-author">
+            <div class="review-av" style="background:linear-gradient(135deg,#A6CE39,#00E5FF)">ف</div>
+            <div>
+              <div class="review-name">فاطمة الزهراني</div>
+              <div class="review-loc">🇸🇦 جدة، المملكة العربية السعودية</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"مشكلة في الحجز الساعة 2 صباحاً وتم حلها خلال 10 دقائق فقط! هذا هو المستوى الذي كنت أبحث عنه."</div>
+          <div class="review-author">
+            <div class="review-av" style="background:linear-gradient(135deg,#0B1F63,#00E5FF)">أ</div>
+            <div>
+              <div class="review-name">أحمد الشمري</div>
+              <div class="review-loc">🇰🇼 الكويت</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"أسافر باستمرار لأغراض العمل وويكند جو أصبح مرجعي الأول دائماً. واجهة سهلة وسريعة وأسعار تنافسية."</div>
+          <div class="review-author">
+            <div class="review-av" style="background:linear-gradient(135deg,#A6CE39,#7ab22e)">ن</div>
+            <div>
+              <div class="review-name">نورة السبيعي</div>
+              <div class="review-loc">🇦🇪 أبوظبي، الإمارات</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★☆</div>
+          <div class="review-text">"شهر عسل في المالديف كان أجمل من أي توقع. الفندق بالضبط كما وصفوه. شكراً لفريق ويكند جو."</div>
+          <div class="review-author">
+            <div class="review-av" style="background:linear-gradient(135deg,#C9A84C,#a88230)">ع</div>
+            <div>
+              <div class="review-name">عبدالرحمن القحطاني</div>
+              <div class="review-loc">🇸🇦 الدمام</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"ما يميز ويكند جو هو الشفافية الكاملة في الأسعار بدون رسوم مخفية. دفعت ما قيل لي بالضبط. موقع نزيه ومحترم."</div>
+          <div class="review-author">
+            <div class="review-av" style="background:linear-gradient(135deg,#00E5FF,#0077aa)">س</div>
+            <div>
+              <div class="review-name">سارة المالكي</div>
+              <div class="review-loc">🇧🇭 المنامة، البحرين</div>
+              <div class="review-badge">✓ تقييم موثق</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HOTEL CHAINS — Partners
+  ════════════════════════════════════════════════════════════ -->
+  <section class="chains-section">
+    <div class="chains-label">شركاؤنا الاستراتيجيون — أكبر سلاسل الفنادق العالمية</div>
+    <div class="chains-grid">
+
+      <div class="chain-card chain-marriott">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 100 40">
+            <text x="10" y="30" font-family="Georgia, serif" font-size="28" font-weight="900" fill="#C41230">Marriott</text>
+          </svg>
+        </div>
+        <div class="chain-name">ماريوت الدولية</div>
+        <div class="chain-tag">8,700+ فندق</div>
+      </div>
+
+      <div class="chain-card chain-hilton">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 90 40">
+            <text x="5" y="30" font-family="Arial, sans-serif" font-size="26" font-weight="900" fill="#003087" letter-spacing="1">HILTON</text>
+          </svg>
+        </div>
+        <div class="chain-name">هيلتون العالمية</div>
+        <div class="chain-tag">7,200+ فندق</div>
+      </div>
+
+      <div class="chain-card chain-hyatt">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 80 40">
+            <text x="5" y="30" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#B40D25" letter-spacing="-0.5">Hyatt</text>
+          </svg>
+        </div>
+        <div class="chain-name">هيات للفنادق</div>
+        <div class="chain-tag">1,100+ فندق</div>
+      </div>
+
+      <div class="chain-card chain-ihg">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 80 40">
+            <text x="8" y="26" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#003580" letter-spacing="3">IHG</text>
+            <text x="3" y="38" font-family="Arial, sans-serif" font-size="9" fill="#003580" letter-spacing="0.5">HOTELS &amp; RESORTS</text>
+          </svg>
+        </div>
+        <div class="chain-name">IHG للفنادق</div>
+        <div class="chain-tag">6,000+ فندق</div>
+      </div>
+
+      <div class="chain-card chain-accor">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 80 40">
+            <text x="5" y="30" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#C8102E" font-style="italic">accor</text>
+          </svg>
+        </div>
+        <div class="chain-name">أكور للضيافة</div>
+        <div class="chain-tag">5,500+ فندق</div>
+      </div>
+
+      <div class="chain-card chain-fourseasons">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 100 40">
+            <text x="5" y="18" font-family="Georgia, serif" font-size="11" fill="#B8963E" letter-spacing="1.5">FOUR</text>
+            <text x="2" y="34" font-family="Georgia, serif" font-size="11" fill="#B8963E" letter-spacing="1.5">SEASONS</text>
+          </svg>
+        </div>
+        <div class="chain-name">فور سيزونز</div>
+        <div class="chain-tag">130+ منتجع فاخر</div>
+      </div>
+
+      <div class="chain-card chain-rotana">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 90 40">
+            <text x="5" y="30" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#8B6914" letter-spacing="1">Rotana</text>
+          </svg>
+        </div>
+        <div class="chain-name">روتانا الشرق الأوسط</div>
+        <div class="chain-tag">100+ فندق عربي</div>
+      </div>
+
+      <div class="chain-card chain-jumeirah">
+        <div class="chain-logo">
+          <svg width="80" height="40" viewBox="0 0 100 40">
+            <text x="3" y="20" font-family="Georgia, serif" font-size="10" fill="#1B4B82" letter-spacing="2">JUMEIRAH</text>
+            <line x1="3" y1="24" x2="95" y2="24" stroke="#B8963E" stroke-width="0.8"/>
+            <text x="10" y="36" font-family="Georgia, serif" font-size="9" fill="#B8963E" letter-spacing="3">GROUP</text>
+          </svg>
+        </div>
+        <div class="chain-name">جميرا دبي</div>
+        <div class="chain-tag">30+ منتجع فاخر</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       APP BANNER
+  ════════════════════════════════════════════════════════════ -->
+  <section class="app-section">
+    <div class="app-banner">
+      <div class="app-text">
+        <h2 class="app-title">سافر أينما <span>كنت</span></h2>
+        <p class="app-desc">حمّل تطبيق ويكند جو واحجز رحلاتك وفنادقك من أي مكان. مزامنة فورية وإشعارات حصرية.</p>
+        <div class="app-btns">
+          <button class="app-btn">🍎 <span>App Store</span></button>
+          <button class="app-btn">▶ <span>Google Play</span></button>
+        </div>
+      </div>
+      <div class="app-phones">
+        <div class="phone-mock">📱</div>
+        <div class="phone-mock">✈</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="/logo/logo.png" alt="ويكند جو" />
+          <div class="footer-logo-text">
+            <div class="main">ويكند <span class="go">جو</span></div>
+            <div class="sub">◆ للسفر والسياحة ◆</div>
+          </div>
+        </div>
+        <p class="footer-desc">منصتك الأولى للسفر والسياحة في العالم العربي. نربطك بأفضل الفنادق بأسعار لا تُنافَس مع خدمة عملاء استثنائية.</p>
+        <div class="social-links">
+          <div class="social-btn">𝕏</div>
+          <div class="social-btn">📸</div>
+          <div class="social-btn">f</div>
+          <div class="social-btn">▶</div>
+          <div class="social-btn">💬</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>الخدمات</h4>
+        <div class="footer-links">
+          <a href="#">🏨 حجز فنادق</a>
+          <a href="#">✈ تذاكر طيران</a>
+          <a href="#">📦 باقات سياحية</a>
+          <a href="#">🏖️ منتجعات</a>
+          <a href="#">🚗 استئجار سيارات</a>
+          <a href="#">🛡️ تأمين سفر</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>روابط مفيدة</h4>
+        <div class="footer-links">
+          <a href="#">من نحن</a>
+          <a href="#">الوجهات الشائعة</a>
+          <a href="#">العروض الخاصة</a>
+          <a href="#">برنامج الولاء</a>
+          <a href="#">شركاء الأعمال</a>
+          <a href="#">التوظيف</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <div class="contact-item">📧 info@weekendgo.com</div>
+        <div class="contact-item">📞 920-000-XXX</div>
+        <div class="contact-item">💬 واتساب: +966-XX-XXXX</div>
+        <div class="contact-item">🕐 دعم 24/7 بالعربية</div>
+        <div class="contact-item">🌐 weekendgo.com</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 شركة ويكند جو للسفر والسياحة. جميع الحقوق محفوظة.</div>
+      <div class="footer-legal">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط والأحكام</a>
+        <a href="#">سياسة الإلغاء</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════════════════════ -->
+  <script>
+  (function(){
+    'use strict';
+
+    // ── Theme: Light is DEFAULT ──────────────────────────
+    const themeBtn = document.getElementById('themeBtn');
+    // Only switch to dark if user explicitly chose it before
+    if (localStorage.getItem('wg-theme') === 'dark') {
+      document.body.classList.add('dark');
+      themeBtn.textContent = '🌙';
+    } else {
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('wg-theme', isDark ? 'dark' : 'light');
+      themeBtn.textContent = isDark ? '🌙' : '☀️';
+    });
+
+    // ── Navbar scroll ────────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    // ── Hamburger ────────────────────────────────────────
+    document.getElementById('hamburger').addEventListener('click', function() {
+      const m = document.getElementById('mobileMenu');
+      const open = m.classList.toggle('open');
+      this.setAttribute('aria-expanded', open);
+    });
+
+    // ── Hero image slider ────────────────────────────────
+    const slides = document.querySelectorAll('.hero-slide');
+    let slideIdx = 0;
+    setInterval(() => {
+      slides[slideIdx].classList.remove('active');
+      slideIdx = (slideIdx + 1) % slides.length;
+      slides[slideIdx].classList.add('active');
+    }, 6000);
+
+    // ── Default dates ────────────────────────────────────
+    (function setDates() {
+      const now = new Date();
+      const ci  = new Date(now); ci.setDate(now.getDate() + 7);
+      const co  = new Date(now); co.setDate(now.getDate() + 10);
+      const fmt = d => d.toISOString().slice(0,10);
+      ['h-ci','h-co','f-dep','f-ret'].forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) el.value = fmt(i % 2 === 0 ? ci : co);
+      });
+    })();
+
+    // ── Tab switch ───────────────────────────────────────
+    window.switchTab = function(tab) {
+      document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
+      const btns = document.querySelectorAll('.stab');
+      const tabs = ['hotel','flight','package','resort','car'];
+      btns[tabs.indexOf(tab)].classList.add('active');
+      document.getElementById('panel-' + tab).classList.add('active');
+    };
+
+    // ── Select destination ───────────────────────────────
+    window.selectDest = function(city) {
+      document.getElementById('h-dest').value = city;
+      switchTab('hotel');
+      document.querySelector('.hero-search').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    // ── Star string ──────────────────────────────────────
+    function stars(n) { return '★'.repeat(Math.min(5,Math.round(n||0))) + '☆'.repeat(5-Math.min(5,Math.round(n||0))); }
+    function fmtDate(d) { try { return new Date(d+'T00:00:00').toLocaleDateString('ar-SA',{day:'numeric',month:'short'}); } catch(e){return d;} }
+
+    // ── SerpAPI proxy call ────────────────────────────────
+    async function serpFetch(params) {
+      const r = await fetch('/api/serpapi?' + new URLSearchParams(params));
+      if (!r.ok) throw new Error('server_' + r.status);
+      const data = await r.json();
+      if (data.error) throw new Error(data.error);
+      return data;
+    }
+
+    // ════════════════════════════════════════════════════
+    // AUTOCOMPLETE — CITIES FIRST, then Hotels
+    // ════════════════════════════════════════════════════
+    function initAutocomplete() {
+      const input = document.getElementById('h-dest');
+      const drop  = document.getElementById('ac-drop');
+      let timer = null;
+
+      input.addEventListener('input', () => {
+        clearTimeout(timer);
+        const q = input.value.trim();
+        if (q.length < 2) { drop.style.display = 'none'; return; }
+        drop.innerHTML = `<div class="ac-loading"><span style="width:14px;height:14px;border:2px solid rgba(0,0,0,0.1);border-top-color:var(--cyan);border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block"></span> جاري البحث...</div>`;
+        drop.style.display = 'block';
+        timer = setTimeout(() => doAutocomplete(q), 350);
+      });
+
+      document.addEventListener('click', e => {
+        if (!input.closest('.sf').contains(e.target)) drop.style.display = 'none';
+      });
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Escape') drop.style.display = 'none';
+        if (e.key === 'Enter') { drop.style.display = 'none'; searchHotels(); }
+      });
+    }
+
+    async function doAutocomplete(q) {
+      const drop = document.getElementById('ac-drop');
+      // 1. Always show static city matches first (instant)
+      const CITIES = [
+        { name:'مكة المكرمة',     country:'المملكة العربية السعودية', flag:'🇸🇦' },
+        { name:'المدينة المنورة', country:'المملكة العربية السعودية', flag:'🇸🇦' },
+        { name:'الرياض',          country:'المملكة العربية السعودية', flag:'🇸🇦' },
+        { name:'جدة',             country:'المملكة العربية السعودية', flag:'🇸🇦' },
+        { name:'دبي',             country:'الإمارات',                 flag:'🇦🇪' },
+        { name:'أبوظبي',          country:'الإمارات',                 flag:'🇦🇪' },
+        { name:'إسطنبول',         country:'تركيا',                    flag:'🇹🇷' },
+        { name:'القاهرة',         country:'مصر',                      flag:'🇪🇬' },
+        { name:'باريس',           country:'فرنسا',                    flag:'🇫🇷' },
+        { name:'لندن',            country:'المملكة المتحدة',          flag:'🇬🇧' },
+        { name:'بانكوك',          country:'تايلاند',                  flag:'🇹🇭' },
+        { name:'كوالا لمبور',     country:'ماليزيا',                  flag:'🇲🇾' },
+        { name:'Makkah',    country:'Saudi Arabia',  flag:'🇸🇦' },
+        { name:'Madinah',   country:'Saudi Arabia',  flag:'🇸🇦' },
+        { name:'Dubai',     country:'UAE',           flag:'🇦🇪' },
+        { name:'Istanbul',  country:'Turkey',        flag:'🇹🇷' },
+        { name:'London',    country:'UK',            flag:'🇬🇧' },
+        { name:'Paris',     country:'France',        flag:'🇫🇷' },
+        { name:'Bangkok',   country:'Thailand',      flag:'🇹🇭' },
+        { name:'Maldives',  country:'Maldives',      flag:'🇲🇻' },
+        { name:'Cairo',     country:'Egypt',         flag:'🇪🇬' },
+      ];
+      const ql = q.toLowerCase();
+      const localCities = CITIES.filter(c =>
+        c.name.toLowerCase().includes(ql)
+      ).slice(0, 4);
+
+      // Render local cities immediately
+      renderAcItems(drop, localCities.map(c => ({
+        type: 'city', name: c.name, sub: `${c.flag} ${c.country}`, icon: '🌆'
+      })), true);
+
+      // 2. Then call SerpAPI for live suggestions (hotels + more cities)
+      try {
+        const data = await serpFetch({ engine: 'google_hotels_autocomplete', q, hl: 'ar' });
+        const raw  = data.suggestions || [];
+
+        // PRIORITY: cities/destinations first, then hotels
+        const liveCities = raw.filter(s => s.type !== 'hotel').slice(0, 3);
+        const liveHotels = raw.filter(s => s.type === 'hotel').slice(0, 4);
+        const sorted = [...liveCities, ...liveHotels];
+
+        if (!sorted.length && !localCities.length) {
+          drop.style.display = 'none'; return;
+        }
+
+        const items = sorted.map(s => ({
+          type:  s.type === 'hotel' ? 'hotel' : 'city',
+          name:  s.name || s.value || '',
+          sub:   s.country || s.location || '',
+          icon:  s.type === 'hotel' ? '🏨' : '🌆'
+        }));
+
+        // Merge: local cities first (deduplicated), then live results
+        const seen = new Set(localCities.map(c => c.name.toLowerCase()));
+        const merged = [
+          ...localCities.map(c => ({ type:'city', name:c.name, sub:`${c.flag} ${c.country}`, icon:'🌆' })),
+          ...items.filter(i => !seen.has(i.name.toLowerCase()))
+        ].slice(0, 8);
+
+        renderAcItems(drop, merged, false);
+      } catch(e) {
+        // Keep local cities shown, silent fail for live
+      }
+    }
+
+    function renderAcItems(drop, items, isLoading) {
+      if (!items.length && !isLoading) { drop.style.display = 'none'; return; }
+      const input = document.getElementById('h-dest');
+      drop.innerHTML = items.map(item => `
+        <div class="ac-item ac-${item.type}" data-val="${(item.name||'').replace(/"/g,'')}">
+          <div class="ac-icon-wrap">${item.icon}</div>
+          <div>
+            <div class="ac-name">${item.name}</div>
+            ${item.sub ? `<div class="ac-sub">${item.sub}</div>` : ''}
+          </div>
+          <span class="ac-type-badge">${item.type === 'hotel' ? 'فندق' : 'مدينة'}</span>
+        </div>`).join('') + (isLoading ? `<div class="ac-loading" style="font-size:11px;padding:8px 14px;opacity:0.6">⏳ يبحث عن فنادق...</div>` : '');
+
+      drop.querySelectorAll('.ac-item').forEach(el => {
+        el.addEventListener('mousedown', e => {
+          e.preventDefault();
+          input.value = el.dataset.val;
+          drop.style.display = 'none';
+        });
+      });
+      drop.style.display = 'block';
+    }
+
+    // ════════════════════════════════════════════════════
+    // HOTEL SEARCH
+    // ════════════════════════════════════════════════════
+    window.searchHotels = async function() {
+      const dest    = document.getElementById('h-dest').value.trim();
+      const checkIn = document.getElementById('h-ci').value;
+      const checkOut= document.getElementById('h-co').value;
+      const adults  = document.getElementById('h-adults').value;
+      const rooms   = document.getElementById('h-rooms').value;
+
+      if (!dest)   { document.getElementById('h-dest').focus(); return; }
+      if (!checkIn || !checkOut) { alert('يرجى تحديد تواريخ الإقامة'); return; }
+      if (checkIn >= checkOut)   { alert('تاريخ المغادرة يجب أن يكون بعد الوصول'); return; }
+
+      const btn = document.getElementById('searchBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span style="width:14px;height:14px;border:2px solid rgba(11,19,37,0.2);border-top-color:#0B1325;border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block"></span>';
+
+      const res = document.getElementById('hotelResults');
+      res.innerHTML = `<div class="results-header"><div class="results-dot"></div>جاري البحث في ${dest}...</div>`;
+
+      try {
+        const data = await serpFetch({
+          engine: 'google_hotels', q: dest,
+          check_in_date: checkIn, check_out_date: checkOut,
+          adults, rooms, hl: 'ar', gl: 'sa', currency: 'USD'
+        });
+        renderResults(data, dest, checkIn, checkOut);
+      } catch(e) {
+        renderFallback(dest, checkIn, checkOut);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '🔍 بحث';
+      }
+    };
+
+    function renderResults(data, dest, ci, co) {
+      const res = document.getElementById('hotelResults');
+      const hotels = data.properties || [];
+      if (!hotels.length) { renderFallback(dest, ci, co); return; }
+      const nights = Math.round((new Date(co) - new Date(ci)) / 86400000);
+
+      let html = `<div class="results-header">
+        <div class="results-dot"></div>
+        <strong>${hotels.length} فندق</strong>&nbsp;في ${dest}
+        &nbsp;·&nbsp;<span style="color:var(--text-sub);font-size:11px">${fmtDate(ci)} — ${fmtDate(co)} · ${nights} ليالي</span>
+        <span style="margin-right:auto;font-size:10px;color:var(--green)">✓ Google Hotels</span>
+      </div>`;
+
+      hotels.forEach(h => {
+        const price = h.rate_per_night?.lowest || h.total_rate?.lowest || '';
+        const imgs  = h.images || [];
+        const mainImg = imgs[0]?.thumbnail || '';
+        const amenities = (h.amenities || []).slice(0, 4);
+        const rating = parseFloat(h.overall_rating) || 0;
+        const rLabel = rating >= 4.5 ? 'ممتاز' : rating >= 4 ? 'جيد جداً' : rating >= 3.5 ? 'جيد' : '';
+        const link = h.link || '#';
+
+        html += `<div class="hotel-card" onclick="${link !== '#' ? `window.open('${link}','_blank')` : ''}">
+          ${mainImg
+            ? `<img class="h-img" src="${mainImg}" alt="${h.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none'" />`
+            : `<div class="h-img" style="display:flex;align-items:center;justify-content:center;font-size:32px">🏨</div>`}
+          <div>
+            <div class="h-name">${h.name || ''}</div>
+            <div class="h-loc">📍 ${(h.neighborhood || dest)}</div>
+            <div class="h-badges">${amenities.map(a=>`<span class="h-badge">${a}</span>`).join('')}</div>
+          </div>
+          <div class="h-price-col">
+            ${h.hotel_class ? `<div class="h-stars">${stars(parseInt(h.hotel_class))}</div>` : ''}
+            ${rating ? `<div class="h-rating">${rating.toFixed(1)}</div><div class="h-rating-lbl">${rLabel}</div>` : ''}
+            ${price ? `<div class="h-price">${price}</div><div class="h-price-lbl">/ ليلة</div>` : ''}
+          </div>
+        </div>`;
+      });
+
+      res.innerHTML = html;
+    }
+
+    function renderFallback(dest, ci, co) {
+      const res = document.getElementById('hotelResults');
+      const mock = [
+        { n:`${dest} Grand Palace`, d:'فندق 5 نجوم فاخر وسط المدينة', a:['واي فاي','مسبح','سبا'], r:'4.8', s:5, p:'$189', i:'🏰' },
+        { n:`The ${dest} Royal`,    d:'أجنحة ملكية مع خدمة بتلر شخصي', a:['إفطار','مسبح لا نهاية','مركز أعمال'], r:'4.9', s:5, p:'$299', i:'👑' },
+        { n:`${dest} Boutique`,     d:'فندق بوتيك يجمع الأصالة والحداثة', a:['سبا','يوغا','مطبخ عضوي'], r:'4.7', s:4, p:'$149', i:'🌸' },
+        { n:`${dest} Business`,     d:'مثالي لرجال الأعمال موقع مميز', a:['VIP Lounge','مؤتمرات','ترانسفير'], r:'4.5', s:4, p:'$129', i:'🏢' },
+      ];
+      let html = `<div class="results-header"><div class="results-dot"></div><strong>${mock.length}+ فندق</strong> في ${dest}<span style="margin-right:auto;font-size:10px;color:var(--text-sub)">(عرض تجريبي)</span></div>`;
+      mock.forEach(h => {
+        html += `<div class="hotel-card">
+          <div class="h-img" style="display:flex;align-items:center;justify-content:center;font-size:32px;background:var(--bg-mid)">${h.i}</div>
+          <div>
+            <div class="h-name">${h.n}</div>
+            <div class="h-loc">📍 ${dest}</div>
+            <div class="h-badges">${h.a.map(a=>`<span class="h-badge">${a}</span>`).join('')}</div>
+          </div>
+          <div class="h-price-col">
+            <div class="h-stars">${stars(h.s)}</div>
+            <div class="h-rating">${h.r}</div>
+            <div class="h-rating-lbl">ممتاز</div>
+            <div class="h-price">${h.p}</div>
+            <div class="h-price-lbl">/ ليلة</div>
+          </div>
+        </div>`;
+      });
+      res.innerHTML = html;
+    }
+
+    // ── Intersection observer for scroll animations ───────
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.feat-card,.dest-card,.hiw-step,.review-card,.stat-card,.chain-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      io.observe(el);
+    });
+
+    // ── Auth check ────────────────────────────────────────
+    fetch('/api/user').then(r=>r.json()).then(d => {
+      if (d.loggedIn) {
+        const btn = document.getElementById('btnLogin');
+        btn.textContent = 'حسابي';
+        btn.onclick = () => window.location.href = '/profile.html';
+      }
+    }).catch(()=>{});
+
+    // ── Init ──────────────────────────────────────────────
+    initAutocomplete();
+
+  })();
+  </script>
+</body>
+</html>

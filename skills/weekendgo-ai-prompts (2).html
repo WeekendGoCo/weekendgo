@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ويكند.جو — بروبتات AI الكاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --n:  #0A1628;
+  --n2: #112240;
+  --t:  #14A88E;
+  --t3: #E1F5EE;
+  --s:  #1AAFCF;
+  --s2: #E8F7FB;
+  --g:  #C8903A;
+  --g2: #F5E8D0;
+  --lm: #6AC04A;
+  --lm2:#E8F5E2;
+  --mu: #6B7B8D;
+  --bg: #F2F4F7;
+  --wh: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--n);
+  direction: rtl;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--n);
+  padding: 3.5rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  page-break-after: avoid;
+}
+.h-deco {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .08;
+}
+
+.h-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 28px;
+  margin-bottom: 1.75rem;
+  position: relative;
+  z-index: 2;
+}
+.h-wm {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--n);
+}
+.h-wm span { color: var(--t); }
+.h-sub {
+  font-size: 11px;
+  color: var(--mu);
+  letter-spacing: 2px;
+  direction: rtl;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+.h-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: rgba(255,255,255,.5);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  direction: ltr;
+  margin-bottom: 8px;
+}
+.h-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,.35);
+  direction: rtl;
+  position: relative;
+  z-index: 2;
+  font-family: 'Noto Naskh Arabic', serif;
+  letter-spacing: .5px;
+}
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* ── INTRO CARD ── */
+.intro-card {
+  background: white;
+  border: .5px solid rgba(10,22,40,.1);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.ic-stat {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  background: var(--bg);
+}
+.ic-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--n);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.ic-lbl {
+  font-size: 11px;
+  color: var(--mu);
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 3rem;
+  page-break-inside: avoid;
+}
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid rgba(10,22,40,.07);
+}
+.sec-num {
+  width: 32px; height: 32px;
+  background: var(--n);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+.sec-info {}
+.sec-cat {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--t);
+  direction: ltr;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.sec-title {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--n);
+  direction: rtl;
+  line-height: 1.3;
+}
+
+/* ── PROMPT CARD ── */
+.prompt-card {
+  background: white;
+  border: .5px solid rgba(10,22,40,.1);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.pc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .875rem 1.25rem;
+  border-bottom: .5px solid rgba(10,22,40,.07);
+}
+.pc-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pc-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.pc-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--n);
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+.pc-tool {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  font-family: 'DM Sans', sans-serif;
+  direction: ltr;
+  white-space: nowrap;
+}
+
+/* tool colors */
+.tool-mj  { background: #2D2D2D; color: #fff; }
+.tool-de  { background: #10A37F; color: #fff; }
+.tool-fl  { background: #7C3AED; color: #fff; }
+.tool-fi  { background: #F24E1E; color: #fff; }
+.tool-sd  { background: #E85D04; color: #fff; }
+.tool-ai  { background: var(--s); color: #fff; }
+
+.pc-body {
+  padding: 1rem 1.25rem;
+}
+.pc-desc {
+  font-size: 12px;
+  color: var(--mu);
+  direction: rtl;
+  font-family: 'Noto Naskh Arabic', serif;
+  margin-bottom: .875rem;
+  line-height: 1.6;
+}
+.pc-prompt {
+  background: #F5F7FA;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-size: 12px;
+  color: var(--n);
+  line-height: 1.85;
+  border-right: 3px solid var(--t);
+  direction: ltr;
+  font-family: 'DM Sans', sans-serif;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;
+}
+
+/* AR prompt variant */
+.pc-prompt-ar {
+  direction: rtl;
+  border-right: none;
+  border-right: 3px solid var(--g);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 13px;
+}
+
+.pc-footer {
+  padding: .625rem 1.25rem;
+  background: #FAFBFC;
+  border-top: .5px solid rgba(10,22,40,.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pc-tag {
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-family: 'DM Sans', sans-serif;
+  direction: ltr;
+  font-weight: 500;
+}
+.tag-t  { background: var(--t3); color: #04342C; }
+.tag-s  { background: var(--s2); color: #042C53; }
+.tag-g  { background: var(--g2); color: #633806; }
+.tag-l  { background: var(--lm2); color: #173404; }
+.tag-n  { background: rgba(10,22,40,.08); color: var(--n); }
+
+/* ── PARAMS TABLE ── */
+.params-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: .75rem;
+}
+.params-table th {
+  background: var(--bg);
+  padding: 7px 12px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--n);
+  font-family: 'Noto Naskh Arabic', serif;
+  border-bottom: .5px solid rgba(10,22,40,.1);
+}
+.params-table th:first-child { direction: ltr; text-align: left; }
+.params-table td {
+  padding: 7px 12px;
+  border-bottom: .5px solid rgba(10,22,40,.05);
+  color: var(--n);
+  vertical-align: top;
+}
+.params-table td:first-child {
+  direction: ltr;
+  font-family: 'DM Sans', monospace;
+  font-weight: 600;
+  color: var(--t2);
+  white-space: nowrap;
+}
+.params-table td:last-child {
+  direction: rtl;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* ── TIPS BOX ── */
+.tips-box {
+  background: var(--n);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.tips-title {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  direction: rtl;
+  margin-bottom: 1rem;
+}
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+.tip-item {
+  background: rgba(255,255,255,.06);
+  border-radius: 10px;
+  padding: .875rem 1rem;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.tip-num {
+  width: 22px; height: 22px;
+  background: var(--t);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 1px;
+}
+.tip-text {
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+  direction: rtl;
+  line-height: 1.6;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: rgba(10,22,40,.07);
+  margin: 2.5rem 0;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--n);
+  padding: 2rem;
+  text-align: center;
+}
+.footer p {
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  direction: ltr;
+  font-family: 'DM Sans', sans-serif;
+}
+.footer-brand {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  direction: rtl;
+  margin-bottom: 6px;
+}
+.footer-brand span { color: var(--t); }
+
+@media print {
+  body { background: white; }
+  .prompt-card, .section { page-break-inside: avoid; }
+  .header { -webkit-print-color-adjust: exact; }
+  .tips-box { -webkit-print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="h-deco" style="width:400px;height:400px;background:var(--t);top:-150px;right:-80px;"></div>
+  <div class="h-deco" style="width:250px;height:250px;background:var(--s);bottom:-80px;left:-60px;"></div>
+  <div class="h-deco" style="width:160px;height:160px;background:var(--g);top:30px;left:28%;opacity:.05;"></div>
+
+  <div class="h-brand">
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+      <circle cx="21" cy="21" r="19" fill="#0A1628"/>
+      <path d="M10 25 Q21 12 32 25" stroke="#14A88E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M14 25 Q21 16 28 25" stroke="#1AAFCF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="21" cy="25" r="3" fill="#C8903A"/>
+      <path d="M21 22 L21 16.5" stroke="#C8903A" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="21" cy="21" r="19" stroke="#14A88E" stroke-width=".7" fill="none" opacity=".25"/>
+    </svg>
+    <div>
+      <div class="h-wm">ويكند<span>.جو</span></div>
+      <div class="h-sub">للسفر والسياحة</div>
+    </div>
+  </div>
+  <div class="h-title">AI Prompts — Complete Design System</div>
+  <div class="h-desc">بروبتات الذكاء الاصطناعي الكاملة لجميع تصاميم الهوية البصرية</div>
+</div>
+
+<div class="container">
+
+  <!-- STATS -->
+  <div class="intro-card">
+    <div class="ic-stat">
+      <div class="ic-num" style="color:var(--t)">28</div>
+      <div class="ic-lbl">بروبت جاهز</div>
+    </div>
+    <div class="ic-stat">
+      <div class="ic-num" style="color:var(--g)">6</div>
+      <div class="ic-lbl">أدوات AI مدعومة</div>
+    </div>
+    <div class="ic-stat">
+      <div class="ic-num" style="color:var(--s)">9</div>
+      <div class="ic-lbl">فئة تصميمية</div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tips-box">
+    <div class="tips-title">نصائح للحصول على أفضل النتائج</div>
+    <div class="tips-grid">
+      <div class="tip-item">
+        <div class="tip-num">1</div>
+        <div class="tip-text">استخدم البروبت كاملاً دون حذف أي جزء للحصول على أدق النتائج</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">2</div>
+        <div class="tip-text">في Midjourney أضف <span style="color:var(--t);font-family:'DM Sans',sans-serif;direction:ltr">--v 6.1</span> للحصول على أحدث جودة</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">3</div>
+        <div class="tip-text">يمكن استبدال الأسماء والأسعار بأي قيم تناسب احتياجاتك</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">4</div>
+        <div class="tip-text">أدوات Flux وMidjourney تعطي أفضل نتائج للتصاميم الفاخرة</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+       SECTION 1 — BRAND IDENTITY
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-cat">Brand Identity</div>
+        <div class="sec-title">الهوية البصرية الكاملة</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">🎨</div>
+          <div class="pc-name">موك-أب الهوية الكاملة — Brand Identity Mockup</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">يولّد موك-أب شامل يضم جميع مطبوعات العلامة التجارية في لقطة واحدة فاخرة.</div>
+        <div class="pc-prompt">professional brand identity mockup for "Weekend.Go" Arabic luxury travel agency, navy blue #0A1628 and teal #14A88E color palette with gold #C8903A accents, minimalist luxury travel branding, Arabic calligraphy wordmark "ويكند.جو", flat lay on white marble surface: business cards, boarding pass, phone app screen, hotel keycard, luggage tag, passport holder, travel voucher, editorial product photography, cinematic lighting, high-end lifestyle aesthetic, clean backgrounds --ar 16:9 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 16:9</span>
+        <span class="pc-tag tag-n">--style raw</span>
+        <span class="pc-tag tag-t">flat lay</span>
+        <span class="pc-tag tag-s">marble surface</span>
+        <span class="pc-tag tag-g">luxury branding</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">✏️</div>
+          <div class="pc-name">تصميم الشعار — Logo Design Concept</div>
+        </div>
+        <span class="pc-tool tool-fi">Figma AI / Adobe</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">يولّد مفاهيم متعددة لشعار ويكند.جو بأسلوب minimal احترافي.</div>
+        <div class="pc-prompt">minimalist luxury logo design for "Weekend.Go" travel agency, Arabic brand, combine compass rose with flight path arc and map pin, navy blue #0A1628 primary color, teal #14A88E accent, geometric clean lines, works on white and dark backgrounds, SVG vector style, professional monogram version included, 4 logo variations on white background, brand guidelines presentation --ar 1:1 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">minimal</span>
+        <span class="pc-tag tag-t">vector style</span>
+        <span class="pc-tag tag-n">4 variations</span>
+        <span class="pc-tag tag-s">dark + light versions</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">📋</div>
+          <div class="pc-name">Brand Guidelines Presentation</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">عرض تقديمي احترافي لدليل الهوية البصرية الكامل.</div>
+        <div class="pc-prompt">professional brand guidelines book mockup for "ويكند.جو Weekend.Go" luxury Arab travel company, open hardcover book on white surface showing color palette swatches navy #0A1628 teal #14A88E gold #C8903A, typography specimens in Arabic and English, logo usage rules, magazine editorial photography style, top-down flat lay, premium print quality --ar 4:3 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 4:3</span>
+        <span class="pc-tag tag-g">brand book</span>
+        <span class="pc-tag tag-t">guidelines</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 2 — SOCIAL MEDIA
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-cat">Social Media</div>
+        <div class="sec-title">تصاميم السوشيال ميديا — الـ ٩ بوستات</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">🏨</div>
+          <div class="pc-name">بوست ١ — عرض فندقي</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة خلفية فاخرة لإعلان الفندق مع إطلالة بوسفور.</div>
+        <div class="pc-prompt">luxury hotel social media post background for Arabic travel brand Weekend.Go, 5-star hotel room with Bosphorus view Istanbul at golden hour, navy blue #0A1628 dark overlay at bottom 40% for Arabic text placement, teal #14A88E accent lighting, cinematic travel photography, editorial style, ultra realistic, 8K quality, empty space at bottom for text overlay --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 1:1</span>
+        <span class="pc-tag tag-t">hotel photography</span>
+        <span class="pc-tag tag-s">golden hour</span>
+        <span class="pc-tag tag-n">dark overlay bottom</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">✈️</div>
+          <div class="pc-name">بوست ٢ — عرض طيران</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">خلفية لإعلان الطيران بأسلوب حديث مع رمزية مسارات الطيران.</div>
+        <div class="pc-prompt">aviation flight deal social media background, airplane window view with clouds at sunset, deep navy blue #0A1628 gradient from bottom, sky cyan #1AAFCF accent tones, dark overlay bottom 45% for RTL Arabic text "RUH → IST", flight path lines visualization, minimal travel luxury aesthetic, professional travel photography, cinematic quality --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 1:1</span>
+        <span class="pc-tag tag-s">window view</span>
+        <span class="pc-tag tag-n">dark gradient bottom</span>
+        <span class="pc-tag tag-t">flight path lines</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">🕌</div>
+          <div class="pc-name">بوست ٣ — باقة عمرة</div>
+        </div>
+        <span class="pc-tool tool-de">DALL·E 3</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة روحانية للكعبة المشرفة بجودة احترافية مناسبة للسوشيال ميديا.</div>
+        <div class="pc-prompt">majestic aerial view of Masjid Al-Haram Mecca at night, golden lights illuminating the Kaaba, pilgrims in white ihram, deep dark blue sky with stars, gold #C8903A warm glowing light tones, divine spiritual atmosphere, professional travel photography, dark overlay at bottom for Arabic text placement, editorial magazine quality --ar 1:1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-g">spiritual</span>
+        <span class="pc-tag tag-n">aerial view</span>
+        <span class="pc-tag tag-t">night photography</span>
+        <span class="pc-tag tag-g">golden lighting</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:rgba(10,22,40,.08);">💬</div>
+          <div class="pc-name">بوست ٤ — بوست اقتباس</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تصميم خلفية minimalist للاقتباسات اليومية مع شخصية العلامة.</div>
+        <div class="pc-prompt">minimalist luxury quote post background for travel brand, deep navy blue #0A1628 solid background, subtle teal #14A88E geometric pattern very faint opacity 8%, single thin horizontal gold #C8903A line accent, clean empty space in center for Arabic quote text, small corner branding area, editorial typographic design, premium lifestyle brand aesthetic --ar 1:1 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">minimal</span>
+        <span class="pc-tag tag-t">teal pattern</span>
+        <span class="pc-tag tag-g">gold accent</span>
+        <span class="pc-tag tag-n">empty center</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F5E2;">🌴</div>
+          <div class="pc-name">بوست ٥ — باقة بالي</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة خلفية لإعلان باقة بالي الشاملة بألوان مستوحاة من الهوية.</div>
+        <div class="pc-prompt">Bali luxury travel package social media background, infinity pool overlooking rice terraces at sunset, tropical paradise aesthetic, teal #14A88E water tones, lush green #6AC04A vegetation, warm golden hour lighting, cinematic travel photography, dark gradient overlay bottom 40% for text, ultra realistic 8K, editorial luxury lifestyle --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-l">tropical</span>
+        <span class="pc-tag tag-t">infinity pool</span>
+        <span class="pc-tag tag-g">golden hour</span>
+        <span class="pc-tag tag-n">rice terraces</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">🏷️</div>
+          <div class="pc-name">بوست ٦ — إعلان خصومات</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تصميم جرافيكي لإعلان الخصومات مع عداد تنازلي.</div>
+        <div class="pc-prompt">luxury sale discount announcement social media post for Arab travel brand, deep navy #0A1628 background, large bold "40%" in gold #C8903A circular badge center, geometric concentric circles subtle design, countdown timer visual elements, clean minimal RTL Arabic typography space, premium sale announcement aesthetic, professional digital marketing design --ar 1:1 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-g">discount badge</span>
+        <span class="pc-tag tag-n">circular design</span>
+        <span class="pc-tag tag-t">countdown</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">🌆</div>
+          <div class="pc-name">بوست ٧ — وجهة دبي</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة دبي الليلية الفاخرة لبوست الوجهة السياحية.</div>
+        <div class="pc-prompt">Dubai luxury destination travel post, aerial night view of Dubai Marina skyline with Burj Khalifa, city lights reflections on water, deep navy blue #0A1628 sky, sky cyan #1AAFCF accent in water reflections, cinematic architectural photography, dark gradient overlay bottom half for Arabic text, 8K ultra realistic, editorial travel magazine style --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-s">city lights</span>
+        <span class="pc-tag tag-n">aerial night</span>
+        <span class="pc-tag tag-t">water reflections</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#f0f0f0;">📱</div>
+          <div class="pc-name">بوست ٨ — موك-أب التطبيق</div>
+        </div>
+        <span class="pc-tool tool-fi">Figma AI</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">موك-أب تطبيق ويكند.جو على هاتف iPhone لأغراض الإعلان.</div>
+        <div class="pc-prompt">iPhone 15 Pro device mockup for Weekend.Go Arabic travel booking app, clean white background, app screen showing hotel search results in RTL Arabic interface, navy blue #0A1628 header, teal #14A88E accent buttons, gold #C8903A price highlights, minimal UI design, professional app store screenshot style, floating phone angle, studio lighting, product photography --ar 1:1 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">iPhone mockup</span>
+        <span class="pc-tag tag-t">app UI</span>
+        <span class="pc-tag tag-s">RTL Arabic</span>
+        <span class="pc-tag tag-n">studio lighting</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">🌊</div>
+          <div class="pc-name">بوست ٩ — المالديف الفاخرة</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة المالديف الحالمة بأعلى جودة للبوست الأخير من الشبكة.</div>
+        <div class="pc-prompt">Maldives luxury overwater villa travel social media background, turquoise lagoon crystal clear water, traditional wooden dock extending into ocean, tropical palm trees, blue sky with perfect clouds, sky cyan #1AAFCF water tones, cinematic travel photography, golden hour soft lighting, dark navy overlay at bottom for Arabic text overlay, 8K ultra realistic --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-s">turquoise water</span>
+        <span class="pc-tag tag-n">overwater villa</span>
+        <span class="pc-tag tag-g">golden hour</span>
+        <span class="pc-tag tag-t">8K quality</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 3 — INSTAGRAM GRID
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-info">
+        <div class="sec-cat">Instagram Grid</div>
+        <div class="sec-title">شبكة الإنستغرام الكاملة</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">📐</div>
+          <div class="pc-name">Grid Mockup — شبكة الـ ٩ بوستات</div>
+        </div>
+        <span class="pc-tool tool-de">DALL·E 3</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">موك-أب كامل لشبكة إنستغرام ويكند.جو بالـ ٩ بوستات.</div>
+        <div class="pc-prompt">luxury travel agency Instagram grid mockup for Arabic brand "Weekend.Go", 9 posts preview layout 3x3 grid, navy blue #0A1628 and teal #14A88E color scheme with gold #C8903A accents, content mix: 5-star hotel Istanbul, flight deals, Umrah package, Bali resort, Dubai skyline, Maldives, discount offer, inspirational quote, app mockup, minimal editorial design, RTL Arabic typography, professional content creator aesthetic, clean white phone frame, high resolution --ar 1:1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">3x3 grid</span>
+        <span class="pc-tag tag-t">9 posts</span>
+        <span class="pc-tag tag-s">phone frame</span>
+        <span class="pc-tag tag-g">RTL Arabic</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">📏</div>
+          <div class="pc-name">Grid Theme Strategy — استراتيجية التناسق البصري</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تولّد نمطاً بصرياً متناسقاً يمكن تطبيقه على جميع بوستات الشبكة.</div>
+        <div class="pc-prompt">Instagram feed aesthetic design system for luxury Arabic travel brand Weekend.Go, cohesive color palette navy blue teal gold, alternating post types: photography posts, text-based quotes, graphic design posts, consistent visual theme, brand identity mockup showing feed preview on iPhone, editorial travel magazine aesthetics, Arabic RTL layout, professional social media branding --ar 4:5 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 4:5</span>
+        <span class="pc-tag tag-t">feed aesthetic</span>
+        <span class="pc-tag tag-g">alternating types</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 4 — STORIES & REELS
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-info">
+        <div class="sec-cat">Stories & Reels</div>
+        <div class="sec-title">ستوري وريلز</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">📲</div>
+          <div class="pc-name">Story Background — خلفية ستوري</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">خلفية ستوري 9:16 بالهوية الكاملة لإعلانات الباقات السياحية.</div>
+        <div class="pc-prompt">luxury travel Instagram Story background 9:16 vertical format, deep navy blue #0A1628 upper portion, seamless blend into destination photography bottom half, teal #14A88E geometric subtle pattern, space for Arabic RTL text and CTA button at center, story swipe-up arrow area at bottom, premium travel brand Weekend.Go aesthetic, minimal editorial design, professional digital marketing template --ar 9:16 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 9:16</span>
+        <span class="pc-tag tag-t">story format</span>
+        <span class="pc-tag tag-s">vertical layout</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E6F1FB;">🎬</div>
+          <div class="pc-name">Reel Cover — غلاف ريلز</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">غلاف فيديو ريلز يجذب الانتباه ويعكس الهوية البصرية.</div>
+        <div class="pc-prompt">travel video Reel cover thumbnail for "Weekend.Go" Arabic brand, cinematic vertical 9:16, aerial destination photography top half, strong navy blue #0A1628 gradient overlay bottom 50%, white circular play button centered, teal #14A88E title text area, gold #C8903A small accent detail, Arabic RTL title placeholder space, professional YouTube/Instagram Reel thumbnail design --ar 9:16 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 9:16</span>
+        <span class="pc-tag tag-t">play button</span>
+        <span class="pc-tag tag-s">cinematic</span>
+        <span class="pc-tag tag-g">thumbnail style</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 5 — PRINT & STATIONERY
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-info">
+        <div class="sec-cat">Print & Stationery</div>
+        <div class="sec-title">المطبوعات والأدوات المكتبية</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">💳</div>
+          <div class="pc-name">Business Card — كرت أعمال</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">موك-أب كرت أعمال فاخر لفريق ويكند.جو.</div>
+        <div class="pc-prompt">luxury business card mockup for "Weekend.Go ويكند.جو" Arabic travel agency, front and back view, deep navy blue #0A1628 card with teal #14A88E and gold #C8903A accents, Arabic bilingual typography, embossed logo effect, premium matte finish with spot UV, two cards at slight angle on white marble surface, professional product photography, studio lighting --ar 4:3 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-g">embossed</span>
+        <span class="pc-tag tag-n">matte finish</span>
+        <span class="pc-tag tag-t">bilingual Arabic</span>
+        <span class="pc-tag tag-s">marble surface</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">🛫</div>
+          <div class="pc-name">Boarding Pass — بطاقة الصعود</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">بطاقة صعود مخصصة بهوية ويكند.جو.</div>
+        <div class="pc-prompt">premium airline boarding pass design for "Weekend.Go" travel brand, bilingual Arabic English, navy blue #0A1628 header with teal #14A88E accents, flight route RUH to IST, passenger details section, barcode at bottom, tear-off perforated edge, luxury paper texture, flat lay on white background, product photography studio quality, brand identity showcase --ar 3:2 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">boarding pass</span>
+        <span class="pc-tag tag-t">bilingual</span>
+        <span class="pc-tag tag-s">barcode</span>
+        <span class="pc-tag tag-g">luxury paper</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">🧳</div>
+          <div class="pc-name">Luggage Tag — بطاقة الحقيبة</div>
+        </div>
+        <span class="pc-tool tool-de">DALL·E 3</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">بطاقة حقيبة سفر أنيقة كأداة تسويقية مميزة.</div>
+        <div class="pc-prompt">luxury leather luggage tag for "Weekend.Go" travel brand, navy blue genuine leather with gold #C8903A metal ring, embossed teal #14A88E logo "ويكند.جو", cream window for destination card, premium travel accessory product photography, white background, studio lighting, brand merchandise showcase, high resolution detail --ar 1:1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-g">leather material</span>
+        <span class="pc-tag tag-t">embossed logo</span>
+        <span class="pc-tag tag-n">product photo</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 6 — DIGITAL PRODUCTS
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">06</div>
+      <div class="sec-info">
+        <div class="sec-cat">Digital Products</div>
+        <div class="sec-title">المنتجات الرقمية</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">📱</div>
+          <div class="pc-name">App UI Full Screen — واجهة التطبيق الكاملة</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">واجهة تطبيق حجوزات متكاملة بالهوية الكاملة لويكند.جو.</div>
+        <div class="pc-prompt">modern Arabic travel booking app UI/UX design for "Weekend.Go ويكند.جو" brand, navy blue #0A1628 primary color, teal #14A88E accent, gold #C8903A price highlights, RTL Arabic interface, hotel search results page with card listings, bottom navigation bar, search filters, luxury minimal design system, clean card components, iPhone 15 Pro device mockup, professional Figma-style component showcase, high resolution --ar 9:16 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 9:16</span>
+        <span class="pc-tag tag-s">RTL Arabic</span>
+        <span class="pc-tag tag-t">iPhone 15 Pro</span>
+        <span class="pc-tag tag-g">luxury minimal</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">🖥️</div>
+          <div class="pc-name">Website Homepage — الصفحة الرئيسية للموقع</div>
+        </div>
+        <span class="pc-tool tool-fi">Figma AI</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تصميم صفحة رئيسية لموقع الحجوزات بالهوية البصرية الكاملة.</div>
+        <div class="pc-prompt">luxury Arabic travel booking website homepage design "weekendgo.sa", RTL Arabic layout, hero section with full-width destination photography, navy blue #0A1628 navigation bar, teal #14A88E CTA buttons "احجز الآن", gold #C8903A price highlights, featured destinations grid, search flight hotel form, minimal editorial UI design, responsive desktop mockup, professional web design portfolio quality --ar 16:9 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 16:9</span>
+        <span class="pc-tag tag-s">website</span>
+        <span class="pc-tag tag-t">RTL layout</span>
+        <span class="pc-tag tag-g">hero section</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#f0f0f0;">🖥️</div>
+          <div class="pc-name">YouTube Channel Art — غلاف يوتيوب</div>
+        </div>
+        <span class="pc-tool tool-de">DALL·E 3</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">صورة غلاف يوتيوب بالأبعاد الصحيحة والهوية الكاملة.</div>
+        <div class="pc-prompt">YouTube channel banner for "Weekend.Go ويكند.جو" Arabic luxury travel brand, wide 16:9 format 2560x1440, collage of luxury destinations Istanbul Dubai Bali Maldives, navy blue #0A1628 dark overlay with teal #14A88E and gold #C8903A accents, Arabic brand name large centered, travel photography editorial style, social media cover design, professional digital design --ar 16:9</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">2560x1440</span>
+        <span class="pc-tag tag-s">channel art</span>
+        <span class="pc-tag tag-t">collage style</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 7 — ADVERTISING
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">07</div>
+      <div class="sec-info">
+        <div class="sec-cat">Advertising</div>
+        <div class="sec-title">الإعلانات والحملات التسويقية</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">📢</div>
+          <div class="pc-name">Billboard / Roll-Up — بانر إعلاني</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تصميم لافتة إعلانية خارجية بأبعاد رول-أب أو بيلبورد.</div>
+        <div class="pc-prompt">luxury travel agency outdoor advertising billboard mockup for "Weekend.Go" Arabic brand, portrait roll-up banner format, hero destination photography Istanbul at sunset top 60%, navy blue #0A1628 brand section bottom 40% with teal #14A88E logo area, Arabic headline "اكتشف العالم معنا" in large Naskh typeface, gold #C8903A price callout, minimal elegant outdoor ad design --ar 1:2 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">--ar 1:2</span>
+        <span class="pc-tag tag-t">roll-up</span>
+        <span class="pc-tag tag-g">outdoor ad</span>
+        <span class="pc-tag tag-s">Arabic headline</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">🚌</div>
+          <div class="pc-name">Tourist Bus Wrap — تصميم باص سياحي</div>
+        </div>
+        <span class="pc-tool tool-fl">Flux</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">تصميم تغليف للحافلات السياحية بهوية ويكند.جو.</div>
+        <div class="pc-prompt">luxury tourist coach bus vehicle wrap design for "Weekend.Go ويكند.جو" travel brand, white modern bus with navy blue #0A1628 side panels, large teal #14A88E swoosh wave design element, gold #C8903A accent stripe, destination photography windows, Arabic and English brand name large on side, professional vehicle livery mockup, 3/4 front angle view, studio white background --ar 16:9 --style raw</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-n">vehicle wrap</span>
+        <span class="pc-tag tag-t">swoosh design</span>
+        <span class="pc-tag tag-g">livery mockup</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 8 — PARAMETERS GUIDE
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">08</div>
+      <div class="sec-info">
+        <div class="sec-cat">Parameters Guide</div>
+        <div class="sec-title">دليل البارامترات والأدوات</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">⚙️</div>
+          <div class="pc-name">Midjourney Parameters</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <table class="params-table">
+          <tr>
+            <th>Parameter</th>
+            <th>الاستخدام</th>
+          </tr>
+          <tr><td>--ar 1:1</td><td>مربع — للبوستات الإنستغرام</td></tr>
+          <tr><td>--ar 9:16</td><td>ستوري وريلز عمودي</td></tr>
+          <tr><td>--ar 16:9</td><td>غلاف يوتيوب وبنر أفقي</td></tr>
+          <tr><td>--ar 4:3</td><td>كرت أعمال وعروض تقديمية</td></tr>
+          <tr><td>--v 6.1</td><td>أحدث إصدار — جودة أعلى</td></tr>
+          <tr><td>--style raw</td><td>تصوير واقعي بدون فلاتر</td></tr>
+          <tr><td>--q 2</td><td>أعلى جودة (يستغرق وقتاً أطول)</td></tr>
+          <tr><td>--no text</td><td>إزالة النصوص من الصورة</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#F5E8D0;">🎨</div>
+          <div class="pc-name">ألوان الهوية — Brand Colors Reference</div>
+        </div>
+        <span class="pc-tool tool-ai">جميع الأدوات</span>
+      </div>
+      <div class="pc-body">
+        <table class="params-table">
+          <tr>
+            <th>HEX Code</th>
+            <th>الدور في الهوية</th>
+          </tr>
+          <tr><td>#0A1628</td><td>Navy Deep — اللون الرئيسي، الثقة والاحترافية</td></tr>
+          <tr><td>#112240</td><td>Navy Secondary — خلفيات داكنة</td></tr>
+          <tr><td>#14A88E</td><td>Teal Prime — لون الراحة والطبيعة</td></tr>
+          <tr><td>#0E7C6A</td><td>Teal Dark — نسخة داكنة للتناقضات</td></tr>
+          <tr><td>#1AAFCF</td><td>Sky Cyan — السماء والحرية</td></tr>
+          <tr><td>#C8903A</td><td>Gold Desert — الفخامة والإبراز</td></tr>
+          <tr><td>#6AC04A</td><td>Lime Go — الانطلاق والحيوية</td></tr>
+          <tr><td>#F7F9FC</td><td>Cloud White — الخلفيات والنظافة</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 9 — QUICK COPY PROMPTS
+  ════════════════════════════════ -->
+  <div class="section">
+    <div class="sec-header">
+      <div class="sec-num">09</div>
+      <div class="sec-info">
+        <div class="sec-cat">Quick Copy</div>
+        <div class="sec-title">بروبتات سريعة للنسخ المباشر</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E1F5EE;">⚡</div>
+          <div class="pc-name">Master Brand Prompt — البروبت الرئيسي الشامل</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">ابدأ بهذا البروبت لأي تصميم جديد — يحتوي على جوهر الهوية البصرية.</div>
+        <div class="pc-prompt">Weekend.Go ويكند.جو Arabic luxury travel brand, color palette: navy blue #0A1628, teal #14A88E, sky cyan #1AAFCF, gold #C8903A, lime #6AC04A, RTL Arabic typography Noto Naskh, minimal editorial luxury aesthetic, professional travel photography style, [ADD YOUR SPECIFIC REQUEST HERE] --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-t">master prompt</span>
+        <span class="pc-tag tag-g">customize bracket</span>
+        <span class="pc-tag tag-n">use as base</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-header">
+        <div class="pc-left">
+          <div class="pc-icon" style="background:#E8F7FB;">🌍</div>
+          <div class="pc-name">Destination Photography Template</div>
+        </div>
+        <span class="pc-tool tool-mj">Midjourney</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-desc">قالب جاهز لتوليد صور الوجهات السياحية — استبدل [DESTINATION] باسم الوجهة.</div>
+        <div class="pc-prompt">[DESTINATION] luxury travel destination photography for Weekend.Go Arabic brand, cinematic aerial view, golden hour lighting, teal #14A88E water or sky tones, navy blue #0A1628 dark gradient overlay bottom 40% for text placement, editorial travel magazine quality, ultra realistic 8K, empty space for RTL Arabic headline text --ar 1:1 --style raw --v 6.1</div>
+      </div>
+      <div class="pc-footer">
+        <span class="pc-tag tag-s">template</span>
+        <span class="pc-tag tag-t">replace DESTINATION</span>
+        <span class="pc-tag tag-g">dark overlay</span>
+        <span class="pc-tag tag-n">8K quality</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">ويكند<span>.جو</span> للسفر والسياحة</div>
+  <p>WEEKEND.GO AI PROMPTS GUIDE — v1.0 — 2026 — ALL RIGHTS RESERVED</p>
+</div>
+
+</body>
+</html>
