@@ -1,10 +1,19 @@
-import { Users, Hotel, FileText, Activity } from "lucide-react";
+import { Users, Hotel, FileText, Activity, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold text-slate-900">Dashboard Overview</h1>
       
+      {/* زر تصميم برنامج سياحي */}
+      <Link href="/admin/tours/designer">
+        <button className="w-full md:w-auto px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition hover:opacity-90 text-white" style={{ backgroundColor: '#A6CE39' }}>
+          <MapPin className="w-5 h-5" />
+          🎒 تصميم برنامج سياحي جديد
+        </button>
+      </Link>
+
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard title="Total Hotels" value="1,245" icon={<Hotel />} trend="+12%" trendUp={true} />

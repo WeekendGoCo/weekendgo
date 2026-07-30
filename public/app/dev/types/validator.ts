@@ -92,6 +92,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../../frontend/src/app/admin/tours/designer/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/tours/designer">> = Specific
+  const handler = {} as typeof import("../../../../frontend/src/app/admin/tours/designer/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../../frontend/src/app/admin/tours/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/tours">> = Specific
+  const handler = {} as typeof import("../../../../frontend/src/app/admin/tours/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../../frontend/src/app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific
@@ -132,6 +150,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/locations/search">> = Specific
   const handler = {} as typeof import("../../../../frontend/src/app/api/locations/search/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../../frontend/src/app/api/tours/export-pdf/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/tours/export-pdf">> = Specific
+  const handler = {} as typeof import("../../../../frontend/src/app/api/tours/export-pdf/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
